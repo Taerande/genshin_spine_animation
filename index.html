@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Genshin Impact Spine animation</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+    </style>
+    <script src="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/iife/spine-player.js"></script>
+  </head>
+  <body>
+    <div>
+      <div id="navia" style="width: 100%"></div>
+      <div id="nilu" style="width: 100%"></div>
+      <div id="emilly" style="width: 100%"></div>
+      <div id="yaran" style="width: 100%"></div>
+    </div>
+    <script>
+      new spine.SpinePlayer("navia", {
+        skeleton: "./data/navia.json",
+        atlas: "./data/navia.atlas",
+        animation: "animation",
+        premultipliedAlpha: false,
+        alpha: true,
+        loop: true,
+        autoplay: true,
+        showControls: false,
+      });
+      new spine.SpinePlayer("nilu", {
+        skeleton: "./data/nilu.json",
+        atlas: "./data/nilu.atlas",
+        animation: "aa",
+        premultipliedAlpha: false,
+        alpha: true,
+        loop: true,
+        autoplay: true,
+        showControls: false,
+      });
+      new spine.SpinePlayer("emilly", {
+        skeleton: "./data/emilly.json",
+        atlas: "./data/emilly.atlas",
+        animation: "animation",
+        premultipliedAlpha: false,
+        alpha: true,
+        loop: true,
+        autoplay: true,
+        showControls: false,
+      });
+      new spine.SpinePlayer("yaran", {
+        skeleton: "./data/yaran.json",
+        atlas: "./data/yaran.atlas",
+        animation: "animation",
+        premultipliedAlpha: false,
+        alpha: true,
+        loop: true,
+        autoplay: true,
+        showControls: false,
+      });
+    </script>
+  </body>
+</html>
