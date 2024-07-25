@@ -1,0 +1,93 @@
+:root {
+  --bg_1: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec1/80880d7c9ea4ea36a8c8835e6b6ad131cc33a93f.webp");
+  --bg_2: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec3/121609a7ddab4b615e05190c6d4418fe9b48caa7.webp");
+  --bg_3: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec4/7f24dd6c64654af9fc37ae93b5566c4a86507f11.webp");
+  --bg_4: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec5/b0fae089e2dadf7d5ee7539116789ec176d1122d.webp");
+  --bg_5: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec6/1641b66209fa853176e47fbf65772f99c9ba7f89.webp");
+  --bg_6: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec7/c7e405314f74c881d3bc4c53215424866a51e94c.webp");
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.navigator {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+
+  ul,
+  li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  li {
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 80px;
+    margin-top: 10px;
+    background: red;
+  }
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+
+  .main__item {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: transform 0.7s ease, box-shadow 0.7s ease;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  #main__item--01 {
+    background-image: var(--bg_1);
+  }
+  #main__item--02 {
+    background-image: var(--bg_2);
+  }
+  #main__item--03 {
+    background-image: var(--bg_3);
+  }
+  #main__item--04 {
+    background-image: var(--bg_4);
+  }
+  #main__item--05 {
+    background-image: var(--bg_5);
+  }
+  #main__item--06 {
+    background-image: var(--bg_6);
+  }
+  .prev {
+    z-index: 4;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(-100%);
+  }
+  .active {
+    z-index: 3;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+    transform: translateY(0%) !important;
+  }
+  .next {
+    z-index: 4;
+    box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.5);
+    transform: translateY(100%);
+  }
+}
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
