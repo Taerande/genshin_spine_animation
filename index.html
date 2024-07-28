@@ -20,75 +20,14 @@
     <div class="wrapper">
       <section
         id="navia"
-        style="width: 100%"
         class="main__item active"
         data-item-index="1"
       ></section>
-      <section
-        id="nilu"
-        style="width: 100%"
-        class="main__item"
-        data-item-index="2"
-      ></section>
-      <section
-        id="emilly"
-        style="width: 100%"
-        class="main__item"
-        data-item-index="3"
-      ></section>
-      <section
-        id="yaran"
-        style="width: 100%"
-        class="main__item"
-        data-item-index="4"
-      ></section>
+      <section id="nilu" class="main__item" data-item-index="2"></section>
+      <section id="emilly" class="main__item" data-item-index="3"></section>
+      <section id="yaran" class="main__item" data-item-index="4"></section>
     </div>
-    <script>
-      new spine.SpinePlayer("navia", {
-        skeleton: "./data/navia.json",
-        atlas: "./data/navia.atlas",
-        animation: "animation",
-        premultipliedAlpha: false,
-        alpha: false,
-        loop: true,
-        autoplay: true,
-        showControls: false,
-        backgroundColor: "#ffffff",
-      });
-      new spine.SpinePlayer("nilu", {
-        skeleton: "./data/nilu.json",
-        atlas: "./data/nilu.atlas",
-        animation: "aa",
-        premultipliedAlpha: false,
-        alpha: false,
-        loop: true,
-        autoplay: true,
-        showControls: false,
-        backgroundColor: "#ffffff",
-      });
-      new spine.SpinePlayer("emilly", {
-        skeleton: "./data/emilly.json",
-        atlas: "./data/emilly.atlas",
-        animation: "animation",
-        premultipliedAlpha: false,
-        alpha: false,
-        loop: true,
-        autoplay: true,
-        showControls: false,
-        backgroundColor: "#ffffff",
-      });
-      new spine.SpinePlayer("yaran", {
-        skeleton: "./data/yaran.json",
-        atlas: "./data/yaran.atlas",
-        animation: "animation",
-        premultipliedAlpha: false,
-        alpha: false,
-        loop: true,
-        autoplay: true,
-        showControls: false,
-        backgroundColor: "#ffffff",
-      });
-    </script>
-    <script src="./main.js"></script>
+
+    <script type="module" src="./main.js"></script>
   </body>
 </html>

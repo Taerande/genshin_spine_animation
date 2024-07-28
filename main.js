@@ -1,3 +1,4 @@
+import { EventBus } from "./events/eventBus.js";
 // document.addEventListener("DOMContentLoaded", () => {
 //   const $navigator = document.querySelector("nav");
 //   const $mainItemList = document.querySelector(".wrapper");
@@ -55,7 +56,55 @@
 //   })
 // });
 
+const playSpine = () => {
+  new spine.SpinePlayer("navia", {
+    skeleton: "./data/navia.json",
+    atlas: "./data/navia.atlas",
+    animation: "animation",
+    premultipliedAlpha: false,
+    alpha: false,
+    loop: true,
+    autoplay: true,
+    showControls: false,
+    backgroundColor: "#ffffff",
+  });
+  new spine.SpinePlayer("nilu", {
+    skeleton: "./data/nilu.json",
+    atlas: "./data/nilu.atlas",
+    animation: "aa",
+    premultipliedAlpha: false,
+    alpha: false,
+    loop: true,
+    autoplay: true,
+    showControls: false,
+    backgroundColor: "#ffffff",
+  });
+  new spine.SpinePlayer("emilly", {
+    skeleton: "./data/emilly.json",
+    atlas: "./data/emilly.atlas",
+    animation: "animation",
+    premultipliedAlpha: false,
+    alpha: false,
+    loop: true,
+    autoplay: true,
+    showControls: false,
+    backgroundColor: "#ffffff",
+  });
+  new spine.SpinePlayer("yaran", {
+    skeleton: "./data/yaran.json",
+    atlas: "./data/yaran.atlas",
+    animation: "animation",
+    premultipliedAlpha: false,
+    alpha: false,
+    loop: true,
+    autoplay: true,
+    showControls: false,
+    backgroundColor: "#ffffff",
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+  playSpine();
   let isTransitioning = false;
   const $navigator = document.querySelector("nav");
   const $mainItemList = document.querySelector(".wrapper");
@@ -141,3 +190,9 @@ document.addEventListener("DOMContentLoaded", () => {
     handleNavigation(targetIndex);
   });
 });
+
+// (() => {
+//   document.addEventListener("DOMContentLoaded", () => {
+//     const eventBus = new EventBus();
+//   });
+// })();
