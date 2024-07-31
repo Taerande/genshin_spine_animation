@@ -85,6 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (targetIndex === currentIndex) return;
 
     isTransitioning = true;
+    const newUrl = `${window.location.pathname}#main__item--0${targetIndex}`;
+    history.pushState(null, "", newUrl);
 
     const direction = targetIndex > currentIndex ? "prev" : "next";
 
@@ -178,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         await delayTime(globalTransitionDuration);
         isTransitioning = false;
-        window.location.hash = `main__item--0${e.target.dataset.itemIndex}`;
+        // window.location.hash = `main__item--0${e.target.dataset.itemIndex}`;
       }
 
       e.target.removeEventListener("transitionend", handleTransitionEnd);
