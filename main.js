@@ -257,8 +257,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     if (!newActive) return;
 
-    window.location.hash = `main__item--0${targetIndex}`;
-    // handleNavigation(targetIndex);
+    // window.location.hash = `main__item--0${targetIndex}`;
+    handleNavigation(targetIndex);
   };
 
   document.addEventListener("touchstart", (e) => {
