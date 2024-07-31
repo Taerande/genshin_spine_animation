@@ -1,10 +1,23 @@
 :root {
-  --bg_1: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec1/80880d7c9ea4ea36a8c8835e6b6ad131cc33a93f.webp");
-  --bg_2: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec3/121609a7ddab4b615e05190c6d4418fe9b48caa7.webp");
-  --bg_3: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec4/7f24dd6c64654af9fc37ae93b5566c4a86507f11.webp");
-  --bg_4: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec5/b0fae089e2dadf7d5ee7539116789ec176d1122d.webp");
-  --bg_5: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec6/1641b66209fa853176e47fbf65772f99c9ba7f89.webp");
-  --bg_6: url("https://assets.playnccdn.com/res/lineage/update/2024/240124_update/pc/img/sec7/c7e405314f74c881d3bc4c53215424866a51e94c.webp");
+  --bg_1: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/main/3b988918688e682d58d59d94a863a07de53e807a.webp");
+  --bg_2: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/16711c544d2fd4e1cabbdb2ff2f6d41bd02793d8.webp");
+  --bg_3: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section2/c42dcc454635595e23e7b54e4b98a3f813589051.webp");
+  --bg_4: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section9/e3cd6fffeea490d32c667a58b5439c7e2fbec71d.webp");
+  --bg_5: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section3/57850571bf0fdfe2bad974bfeac0f23a7378e5de.webp");
+  --bg_6: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section4/8d03aa7a9c076a5b35826a1ebedd5e0bfd8bddeb.webp");
+  --bg_7: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section5/492b8c816ea87e54f4cb26b7e4405d3b2a4f26a9.webp");
+  --bg_8: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section6/f46d8d66e0c85080e8ada65a88c33406d830fc03.webp");
+
+  --section_1--subtitle: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/main/e4f4fc196d76cd6d032d008193becbc1fe988fb4.webp");
+
+  --section_2--title: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/aa46ef5f7381ae87d2aefb7fd6655cb8bb445b00.webp");
+  --section_2--subtitle: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/38caa40123e71d7453b510150b269d0e7e12331c.webp");
+
+  --section_3--title: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section2/573f029039b91df61932eb0112b87ca4ec08d086.webp");
+  --section_3--subtitle: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section2/28501d6017216f0423a61db90895b09b75952d98.webp");
+
+  --section_4--title: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section3/9892919eb8c7baee4e08d386d97ba407d8008b45.webp");
+  --section_4--subtitle: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section3/3bfe6b0fe1594e1935296e0d89759ab41738884b.webp");
 }
 
 body {
@@ -34,7 +47,12 @@ body {
     cursor: pointer;
     width: 80px;
     margin-top: 10px;
-    background: red;
+    background-color: red;
+    transition: background-color 0.5s ease;
+
+    &.active {
+      background-color: blue;
+    }
   }
 }
 
@@ -51,17 +69,99 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
   }
+
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .title,
+  .subtitle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   #main__item--01 {
     background-image: var(--bg_1);
+
+    .subtitle {
+      width: 564px;
+      height: 120px;
+      margin-top: 188px;
+      background-repeat: no-repeat;
+      background-image: var(--section_1--subtitle);
+    }
   }
   #main__item--02 {
     background-image: var(--bg_2);
+
+    .title {
+      width: 697px;
+      height: 174px;
+      margin-top: -200px;
+      background-repeat: no-repeat;
+      opacity: 0;
+      filter: blur(10px);
+      background-size: 120%;
+      background-position: center center;
+      background-image: var(--section_2--title);
+    }
+    .subtitle {
+      width: 562px;
+      height: 107px;
+      margin-top: -104px;
+      opacity: 0;
+      filter: blur(10px);
+      transform: translate(-50%, 80%);
+      background-position: center center;
+      background-size: 120%;
+      background-image: var(--section_2--subtitle);
+    }
   }
   #main__item--03 {
     background-image: var(--bg_3);
+
+    .title {
+      width: 852px;
+      height: 171px;
+      margin-top: -200px;
+      opacity: 0;
+      filter: blur(30px) brightness(1);
+      background-image: var(--section_3--title);
+      background-size: 120%;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .subtitle {
+      width: 809px;
+      height: 102px;
+      margin-top: -120px;
+      opacity: 0;
+      filter: blur(10px);
+      transform: translate(-50%, 65%);
+      background-image: var(--section_3--subtitle);
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
   }
   #main__item--04 {
     background-image: var(--bg_4);
+
+    .title {
+      width: 1215px;
+      height: 180px;
+      margin-top: -322px;
+      opacity: 0;
+      background: var(--section_3--title) no-repeat center center;
+    }
+    .subtitle {
+      opacity: 0;
+      background: var(--section_3--subtitle) no-repeat center center;
+    }
   }
   #main__item--05 {
     background-image: var(--bg_5);
@@ -69,9 +169,12 @@ body {
   #main__item--06 {
     background-image: var(--bg_6);
   }
+  #main__item--07 {
+    background-image: var(--bg_7);
+  }
   .prev {
     z-index: 4;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
     transform: translateY(-100%);
   }
   .active {
@@ -81,7 +184,7 @@ body {
   }
   .next {
     z-index: 4;
-    box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 -15px 45px rgba(0, 0, 0, 0.4);
     transform: translateY(100%);
   }
 }

@@ -2,11 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
     <title>Genshin Impact Spine animation</title>
     <link rel="stylesheet" href="./style.css" />
-    n
     <script src="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/iife/spine-player.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   </head>
   <body>
     <nav class="navigator">
@@ -15,9 +18,52 @@
         <li data-item-index="2">2</li>
         <li data-item-index="3">3</li>
         <li data-item-index="4">4</li>
+        <li data-item-index="5">5</li>
+        <li data-item-index="6">6</li>
+        <li data-item-index="7">7</li>
       </ul>
     </nav>
     <div class="wrapper">
+      <section class="main__item" id="main__item--01" data-item-index="1">
+        <div class="container">
+          <div class="subtitle"></div>
+        </div>
+      </section>
+      <section class="main__item" id="main__item--02" data-item-index="2">
+        <div class="container">
+          <div class="title"></div>
+          <div class="subtitle"></div>
+        </div>
+      </section>
+      <section class="main__item" id="main__item--03" data-item-index="3">
+        <div class="container">
+          <div class="title"></div>
+          <div class="subtitle"></div>
+        </div>
+      </section>
+      <section
+        class="main__item"
+        id="main__item--04"
+        data-item-index="4"
+      ></section>
+      <section
+        class="main__item"
+        id="main__item--05"
+        data-item-index="5"
+      ></section>
+      <section
+        class="main__item"
+        id="main__item--06"
+        data-item-index="6"
+      ></section>
+      <section
+        class="main__item"
+        id="main__item--07"
+        data-item-index="7"
+      ></section>
+    </div>
+
+    <!-- <div class="wrapper">
       <section
         id="navia"
         class="main__item active"
@@ -26,8 +72,7 @@
       <section id="nilu" class="main__item" data-item-index="2"></section>
       <section id="emilly" class="main__item" data-item-index="3"></section>
       <section id="yaran" class="main__item" data-item-index="4"></section>
-    </div>
-
+    </div> -->
     <script type="module" src="./main.js"></script>
   </body>
 </html>
