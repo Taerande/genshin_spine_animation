@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     current = $mainItemList.querySelector(`#${defaultHash}`);
   } else {
     current = $mainItemList.querySelector("#main__item--01");
-    // window.location.hash = "main__item--01";
+    window.location.hash = "main__item--01";
   }
 
   const defaultId = current.dataset.itemIndex;
@@ -176,10 +176,11 @@ document.addEventListener("DOMContentLoaded", () => {
           );
         } else {
         }
+        await delayTime(globalTransitionDuration);
+        isTransitioning = false;
+        window.location.hash = `main__item--0${e.target.dataset.itemIndex}`;
       }
 
-      await delayTime(globalTransitionDuration);
-      isTransitioning = false;
       e.target.removeEventListener("transitionend", handleTransitionEnd);
     };
 
