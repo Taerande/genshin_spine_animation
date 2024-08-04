@@ -1,79 +1,64 @@
-const playSpine = () => {
-  new spine.SpinePlayer("navia", {
-    skeleton: "./data/navia.json",
-    atlas: "./data/navia.atlas",
-    animation: "animation",
-    premultipliedAlpha: false,
-    alpha: false,
-    loop: true,
-    autoplay: true,
-    showControls: false,
-    backgroundColor: "#ffffff",
-  });
-  new spine.SpinePlayer("nilu", {
-    skeleton: "./data/nilu.json",
-    atlas: "./data/nilu.atlas",
-    animation: "aa",
-    premultipliedAlpha: false,
-    alpha: false,
-    loop: true,
-    autoplay: true,
-    showControls: false,
-    backgroundColor: "#ffffff",
-  });
-  new spine.SpinePlayer("emilly", {
-    skeleton: "./data/emilly.json",
-    atlas: "./data/emilly.atlas",
-    animation: "animation",
-    premultipliedAlpha: false,
-    alpha: false,
-    loop: true,
-    autoplay: true,
-    showControls: false,
-    backgroundColor: "#ffffff",
-  });
-  new spine.SpinePlayer("yaran", {
-    skeleton: "./data/yaran.json",
-    atlas: "./data/yaran.atlas",
-    animation: "animation",
-    premultipliedAlpha: false,
-    alpha: false,
-    loop: true,
-    autoplay: true,
-    showControls: false,
-    backgroundColor: "#ffffff",
-  });
-};
+import { t1, t2, t3, t4, t5, t6, t7, tInit } from "./gsap_transition.js";
+
 const delayTime = (time) => new Promise((resolve) => setTimeout(resolve, time));
+
 document.addEventListener("DOMContentLoaded", () => {
-  // playSpine();
   let isTransitioning = false;
   let startY;
-  const globalTransitionDuration = 300;
+  const globalTransitionDuration = 200;
+  const pageTransitionDuration = 700;
+  const pageTranslateMetric = "60%";
   const swipeThreshold = 50;
   const $navigator = document.querySelector("nav");
   const $mainItemList = document.querySelector(".wrapper");
   const maxIndex = $mainItemList.children.length;
 
-  const idSet = new Set();
-  $mainItemList.querySelectorAll("section").forEach((element) => {
-    idSet.add(element.id);
-  });
+  const init = () => {
+    const idSet = new Set();
+    $mainItemList.querySelectorAll("section").forEach((element) => {
+      idSet.add(element.id);
+      element.style.transition = `transform ${pageTransitionDuration}ms ease`;
+    });
 
-  const defaultHash = window.location.hash.slice(1);
-  let current;
-  if (idSet.has(defaultHash)) {
-    current = $mainItemList.querySelector(`#${defaultHash}`);
-  } else {
-    current = $mainItemList.querySelector("#main__item--01");
-    window.location.hash = "main__item--01";
-  }
+    const defaultHash = window.location.hash.slice(1);
+    let current;
+    if (idSet.has(defaultHash)) {
+      current = $mainItemList.querySelector(`#${defaultHash}`);
+    } else {
+      current = $mainItemList.querySelector("#main__item--01");
+      history.replaceState(null, null, "#main__item--01");
+    }
 
-  const defaultId = current.dataset.itemIndex;
-  current.classList.add("active");
-  $navigator
-    .querySelector(`[data-item-index="${defaultId}"]`)
-    .classList.add("active");
+    const defaultId = current.dataset.itemIndex;
+    current.classList.add("active");
+    $navigator
+      .querySelector(`[data-item-index="${defaultId}"]`)
+      .classList.add("active");
+
+    switch (+current.dataset.itemIndex) {
+      case 1:
+        tInit(t1);
+        break;
+      case 2:
+        tInit(t2);
+        break;
+      case 3:
+        tInit(t3);
+        break;
+      case 4:
+        tInit(t4);
+        break;
+      case 5:
+        tInit(t5);
+        break;
+      case 6:
+        tInit(t6);
+        break;
+      case 7:
+        tInit(t7);
+        break;
+    }
+  };
 
   const handleNavigation = (targetIndex) => {
     if (isTransitioning) return;
@@ -103,15 +88,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // reset style
     if (newActiveChildren.length > 0) {
-      gsap.set(newActiveChildren, { clearProps: "all" });
+      const container = newActive.querySelector(".container");
+      setTimeout(() => {
+        container.style.visibility = "hidden";
+      }, pageTransitionDuration);
     }
     if (currentChildren.length > 0) {
-      gsap.set(currentChildren, { clearProps: "all" });
+      const container = current.querySelector(".container");
+      setTimeout(() => {
+        container.style.visibility = "hidden";
+      }, pageTransitionDuration);
     }
 
     newActive.classList.add("notransition");
     newActive.style.transform =
-      direction === "prev" ? "translateY(50%)" : "translateY(-50%)";
+      direction === "prev"
+        ? `translateY(${pageTranslateMetric})`
+        : `translateY(-${pageTranslateMetric})`;
 
     // 강제 리플로우 발생
     newActive.offsetHeight;
@@ -134,53 +127,31 @@ document.addEventListener("DOMContentLoaded", () => {
       const transitionElement = e.target.classList.contains("active");
       if (transitionElement) {
         const index = +e.target.dataset.itemIndex;
-
-        if (index === 1) {
-        } else if (index === 2) {
-          const t2 = gsap.timeline();
-
-          t2.to("#main__item--02 .title", {
-            duration: 1,
-            opacity: 1,
-            backgroundSize: "100%",
-            filter: "blur(0px)",
-            ease: "power2.out",
-          }).to(
-            "#main__item--02 .subtitle",
-            {
-              duration: 1,
-              opacity: 1,
-              backgroundSize: "100%",
-              y: "-50%",
-              filter: "blur(0px)",
-              ease: "power2.out",
-            },
-            "-=0.7"
-          );
-        } else if (index === 3) {
-          const t3 = gsap.timeline();
-          t3.to("#main__item--03 .title", {
-            duration: 1.5,
-            opacity: 1,
-            backgroundSize: "100%",
-            filter: "blur(0px) brightness(1.2)",
-            ease: "power2.out",
-          }).to(
-            "#main__item--03 .subtitle",
-            {
-              duration: 0.7,
-              opacity: 1,
-              y: "-50%",
-              filter: "blur(0px)",
-              ease: "power2.out",
-            },
-            "-=1"
-          );
-        } else {
+        switch (+index) {
+          case 1:
+            t1.restart();
+            break;
+          case 2:
+            t2.restart();
+            break;
+          case 3:
+            t3.restart();
+            break;
+          case 4:
+            t4.restart();
+            break;
+          case 5:
+            t5.restart();
+            break;
+          case 6:
+            t6.restart();
+            break;
+          case 7:
+            t7.restart();
+            break;
         }
         await delayTime(globalTransitionDuration);
         isTransitioning = false;
-        // window.location.hash = `main__item--0${e.target.dataset.itemIndex}`;
       }
 
       e.target.removeEventListener("transitionend", handleTransitionEnd);
@@ -196,19 +167,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!target) return;
 
     handleNavigation(target.dataset.itemIndex);
-
-    // window.location.hash = `main__item--0${target.dataset.itemIndex}`;
   });
 
-  window.addEventListener("hashchange", (e) => {
-    if (isTransitioning) return;
-    const target = document.querySelector(window.location.hash);
-    const current = $mainItemList.querySelector(".active");
-    if (!current) return;
+  // window.addEventListener("hashchange", (e) => {
+  //   if (isTransitioning) return;
+  //   const target = document.querySelector(window.location.hash);
+  //   const current = $mainItemList.querySelector(".active");
+  //   if (!current) return;
 
-    const targetIndex = +target.dataset.itemIndex;
-    handleNavigation(targetIndex);
-  });
+  //   const targetIndex = +target.dataset.itemIndex;
+  //   handleNavigation(targetIndex);
+  // });
 
   document.addEventListener("wheel", (e) => {
     if (isTransitioning) return;
@@ -278,4 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
       startY = undefined; // Reset startX
     }
   });
+
+  init();
 });

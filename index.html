@@ -7,9 +7,13 @@
       content="user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, width=device-width, initial-scale=1.0"
     />
     <title>Genshin Impact Spine animation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css"
+    />
     <link rel="stylesheet" href="./style.css" />
-    <script src="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/iife/spine-player.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <!-- <script src="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/iife/spine-player.js"></script> -->
+    <script src="./lib/gsap@3.12.5.min.js"></script>
   </head>
   <body>
     <nav class="navigator">
@@ -39,23 +43,84 @@
         <div class="container">
           <div class="title"></div>
           <div class="subtitle"></div>
+          <div class="content">
+            <li class="content__item content__item--01">
+              <div class="item__bg--effect"></div>
+              <div class="item__title"></div>
+              <div class="item__caption"></div>
+            </li>
+            <li class="content__item content__item--02">
+              <div class="item__bg--effect"></div>
+              <div class="item__title"></div>
+              <div class="item__caption"></div>
+            </li>
+            <li class="content__item content__item--03">
+              <div class="item__bg--effect"></div>
+              <div class="item__title"></div>
+              <div class="item__caption"></div>
+            </li>
+          </div>
         </div>
       </section>
-      <section
-        class="main__item"
-        id="main__item--04"
-        data-item-index="4"
-      ></section>
-      <section
-        class="main__item"
-        id="main__item--05"
-        data-item-index="5"
-      ></section>
-      <section
-        class="main__item"
-        id="main__item--06"
-        data-item-index="6"
-      ></section>
+      <section class="main__item" id="main__item--04" data-item-index="4">
+        <div class="container">
+          <div class="title"></div>
+          <div class="subtitle"></div>
+          <div class="main__content"></div>
+          <div class="character"></div>
+          <a href="" class="cta"></a>
+        </div>
+      </section>
+      <section class="main__item" id="main__item--05" data-item-index="5">
+        <div class="container">
+          <div class="title"></div>
+          <div class="subtitle"></div>
+          <div class="content">
+            <li class="content__item content__item--01">
+              <div class="item__bg"></div>
+              <div class="item__title"></div>
+              <div class="item__content"></div>
+              <div class="item__caption"></div>
+            </li>
+            <li class="content__item content__item--02">
+              <div class="item__bg"></div>
+              <div class="item__title"></div>
+              <div class="item__content"></div>
+              <div class="item__caption"></div>
+            </li>
+            <li class="content__item content__item--03">
+              <div class="item__bg"></div>
+              <div class="item__title"></div>
+              <div class="item__content"></div>
+              <div class="item__caption"></div>
+            </li>
+          </div>
+          <div class="cta"></div>
+        </div>
+      </section>
+      <section class="main__item" id="main__item--06" data-item-index="6">
+        <div class="container">
+          <div class="title"></div>
+          <div class="subtitle"></div>
+          <div class="content">
+            <ul>
+              <li class="content__item content__item--01">
+                <div class="item__content"></div>
+                <div class="item__caption"></div>
+              </li>
+              <li class="content__item content__item--02">
+                <div class="item__content"></div>
+                <div class="item__caption"></div>
+              </li>
+              <li class="content__item content__item--03">
+                <div class="item__content"></div>
+                <div class="item__caption"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="cta"></div>
+        </div>
+      </section>
       <section
         class="main__item"
         id="main__item--07"
@@ -73,6 +138,12 @@
       <section id="emilly" class="main__item" data-item-index="3"></section>
       <section id="yaran" class="main__item" data-item-index="4"></section>
     </div> -->
+
+    <!-- <div class="x__cross"></div>
+    <div class="y__cross"></div> -->
+    <div class="pre-load">
+      <div class="ms__logo"></div>
+    </div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>
