@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     style.getPropertyValue("--bg_7").slice(5, -2),
   ];
 
+  // TODO: 함수 단계 쪼개기 작업할 것
   const init = () => {
     const idSet = new Set();
     $mainItemList.querySelectorAll("section").forEach((element) => {
@@ -59,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tInit(timeLineMap[+defaultId]).then(() => (isSplashScreenOpening = false));
   };
 
+  // TODO: 함수 단계 쪼개기 작업할 것
   const handleNavigation = (targetIndex) => {
     if (isTransitioning || isSplashScreenOpening) return;
     const current = $mainItemList.querySelector(".active");
