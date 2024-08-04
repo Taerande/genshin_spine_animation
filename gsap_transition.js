@@ -357,7 +357,7 @@ export const t6 = gsap
     "#main__item--06 .content",
     {
       width: 0,
-      duration: 1,
+      duration: 0.7,
       opacity: 0,
       ease: "power4.ease",
     },
