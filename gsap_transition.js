@@ -1,30 +1,37 @@
 export const tInit = (timeLine) =>
-  gsap
-    .timeline({ onComplete: () => timeLine.play() })
-    .to(
-      ".ms__logo",
-      {
-        scale: 1,
-        opacity: 1,
-        filter: "invert(1) blur(0px) grayscale(0%)",
-        duration: 1,
-        // duration: 0,
-      },
-      0
-    )
-    .to(
-      ".pre-load",
-      {
-        opacity: 0,
-        duration: 0.7,
-        // duration: 0,
-        scale: 1.2,
-        filter: "brightness(4) blur(20px)",
-        delay: 2,
-        // delay: 0,
-      },
-      0
-    );
+  new Promise((resolve) => {
+    gsap
+      .timeline({
+        onComplete: () => {
+          timeLine.play();
+          resolve();
+        },
+      })
+      .to(
+        ".ms__logo",
+        {
+          scale: 1,
+          opacity: 1,
+          filter: "invert(1) blur(0px) grayscale(0%)",
+          duration: 1,
+          // duration: 0,
+        },
+        0
+      )
+      .to(
+        ".pre-load",
+        {
+          opacity: 0,
+          duration: 0.7,
+          // duration: 0,
+          scale: 1.2,
+          filter: "brightness(4) blur(20px)",
+          delay: 2,
+          // delay: 0,
+        },
+        0
+      );
+  });
 
 export const t1 = gsap
   .timeline({ paused: true })

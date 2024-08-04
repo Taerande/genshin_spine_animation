@@ -2,7 +2,18 @@ import { t1, t2, t3, t4, t5, t6, t7, tInit } from "./gsap_transition.js";
 
 const delayTime = (time) => new Promise((resolve) => setTimeout(resolve, time));
 
+const timeLineMap = {
+  1: t1,
+  2: t2,
+  3: t3,
+  4: t4,
+  5: t5,
+  6: t6,
+  7: t7,
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+  let isSplashScreenOpening = true;
   let isTransitioning = false;
   let startY;
   const globalTransitionDuration = 200;
@@ -13,13 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const $mainItemList = document.querySelector(".wrapper");
   const maxIndex = $mainItemList.children.length;
 
+  const style = getComputedStyle(document.documentElement);
+  let preloadImageCount = 0;
+  const essentialImages = [
+    style.getPropertyValue("--bg_1").slice(5, -2),
+    style.getPropertyValue("--bg_2").slice(5, -2),
+    style.getPropertyValue("--bg_3").slice(5, -2),
+    style.getPropertyValue("--bg_4").slice(5, -2),
+    style.getPropertyValue("--bg_5").slice(5, -2),
+    style.getPropertyValue("--bg_6").slice(5, -2),
+    style.getPropertyValue("--bg_7").slice(5, -2),
+  ];
+
   const init = () => {
     const idSet = new Set();
     $mainItemList.querySelectorAll("section").forEach((element) => {
       idSet.add(element.id);
       element.style.transition = `transform ${pageTransitionDuration}ms ease`;
     });
-
     const defaultHash = window.location.hash.slice(1);
     let current;
     if (idSet.has(defaultHash)) {
@@ -28,40 +50,17 @@ document.addEventListener("DOMContentLoaded", () => {
       current = $mainItemList.querySelector("#main__item--01");
       history.replaceState(null, null, "#main__item--01");
     }
-
     const defaultId = current.dataset.itemIndex;
     current.classList.add("active");
     $navigator
       .querySelector(`[data-item-index="${defaultId}"]`)
       .classList.add("active");
 
-    switch (+current.dataset.itemIndex) {
-      case 1:
-        tInit(t1);
-        break;
-      case 2:
-        tInit(t2);
-        break;
-      case 3:
-        tInit(t3);
-        break;
-      case 4:
-        tInit(t4);
-        break;
-      case 5:
-        tInit(t5);
-        break;
-      case 6:
-        tInit(t6);
-        break;
-      case 7:
-        tInit(t7);
-        break;
-    }
+    tInit(timeLineMap[+defaultId]).then(() => (isSplashScreenOpening = false));
   };
 
   const handleNavigation = (targetIndex) => {
-    if (isTransitioning) return;
+    if (isTransitioning || isSplashScreenOpening) return;
     const current = $mainItemList.querySelector(".active");
     const currentLi = $navigator.querySelector(".active");
     if (!current) return;
@@ -127,29 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const transitionElement = e.target.classList.contains("active");
       if (transitionElement) {
         const index = +e.target.dataset.itemIndex;
-        switch (+index) {
-          case 1:
-            t1.restart();
-            break;
-          case 2:
-            t2.restart();
-            break;
-          case 3:
-            t3.restart();
-            break;
-          case 4:
-            t4.restart();
-            break;
-          case 5:
-            t5.restart();
-            break;
-          case 6:
-            t6.restart();
-            break;
-          case 7:
-            t7.restart();
-            break;
-        }
+        timeLineMap[index].restart();
         await delayTime(globalTransitionDuration);
         isTransitioning = false;
       }
@@ -248,5 +225,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  init();
+  essentialImages.forEach((element) => {
+    const img = new Image();
+    img.onload = () => {
+      preloadImageCount += 1;
+      if (maxIndex === preloadImageCount) {
+        init();
+      }
+    };
+    img.importance = "high";
+    img.fetchPriority = "high";
+    img.loading = "eager";
+    img.src = element;
+  });
 });
