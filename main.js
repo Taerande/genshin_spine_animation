@@ -140,10 +140,20 @@ document.addEventListener("DOMContentLoaded", () => {
     newActive.addEventListener("transitionend", handleTransitionEnd);
   };
 
+  // TODO: 지금 #main__item--01 이런식으로 dataItemIndex사하고 있는데 이를 전부 href로 변경해야함.
+  // href 랑 연결되게 설정하는게 맞다. 그리고 href="undefined"로 설정하여 tabMenu 설정해주면 됨
+  //  각 li의 a tag의 href값이 id값과 일치하는지 확인하고 active를 붙혀줘야함.
   $navigator.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      e.preventDefault();
+    }
     if (isTransitioning) return;
     const target = e.target.closest("li");
     if (!target) return;
+
+    const currentActive = $navigator.querySelector(".active");
+
+    if (currentActive.dataset.itemIndex === target.dataset.itemIndex) return;
 
     handleNavigation(target.dataset.itemIndex);
   });
