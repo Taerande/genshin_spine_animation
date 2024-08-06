@@ -43,11 +43,15 @@ export const t1 = gsap
     },
     0
   )
-  .from("#main__item--01 .subtitle", {
-    duration: 1,
-    opacity: 0,
-    ease: "power4.ease",
-  });
+  .from(
+    "#main__item--01 .subtitle",
+    {
+      duration: 1,
+      opacity: 0,
+      ease: "power4.ease",
+    },
+    0
+  );
 
 export const t2 = gsap
   .timeline({ paused: true })

@@ -3,13 +3,13 @@ import { t1, t2, t3, t4, t5, t6, t7, tInit } from "./gsap_transition.js";
 const delayTime = (time) => new Promise((resolve) => setTimeout(resolve, time));
 
 const timeLineMap = {
-  1: t1,
-  2: t2,
-  3: t3,
-  4: t4,
-  5: t5,
-  6: t6,
-  7: t7,
+  "main__item--01": t1,
+  "main__item--02": t2,
+  "main__item--03": t3,
+  "main__item--04": t4,
+  "main__item--05": t5,
+  "main__item--06": t6,
+  "main__item--07": t7,
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -20,9 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const pageTransitionDuration = 700;
   const pageTranslateMetric = "60%";
   const swipeThreshold = 50;
-  const $navigator = document.querySelector("nav");
-  const $mainItemList = document.querySelector(".wrapper");
-  const maxIndex = $mainItemList.children.length;
+  const $navigator = document.querySelector(".msg__navigator");
+  const $wrapper = document.querySelector("main.msg__wrapper");
+  const $sectionList = document.querySelectorAll(
+    "main.msg__wrapper > section.msg__section"
+  );
+
+  const maxIndex = $sectionList.length;
 
   const style = getComputedStyle(document.documentElement);
   let preloadImageCount = 0;
@@ -36,83 +40,66 @@ document.addEventListener("DOMContentLoaded", () => {
     style.getPropertyValue("--bg_7").slice(5, -2),
   ];
 
-  // TODO: 함수 단계 쪼개기 작업할 것
   const init = () => {
     const idSet = new Set();
-    $mainItemList.querySelectorAll("section").forEach((element) => {
+    $wrapper.querySelectorAll("section").forEach((element) => {
       idSet.add(element.id);
       element.style.transition = `transform ${pageTransitionDuration}ms ease`;
     });
     const defaultHash = window.location.hash.slice(1);
     let current;
     if (idSet.has(defaultHash)) {
-      current = $mainItemList.querySelector(`#${defaultHash}`);
+      current = $wrapper.querySelector(`#${defaultHash}`);
     } else {
-      current = $mainItemList.querySelector("#main__item--01");
-      history.replaceState(null, null, "#main__item--01");
+      const firstId = [...idSet][0];
+      current = $wrapper.querySelector(`#${firstId}`);
+      history.replaceState(null, null, `#${firstId}`);
     }
-    const defaultId = current.dataset.itemIndex;
+    const defaultId = current.id;
+
     current.classList.add("active");
     $navigator
-      .querySelector(`[data-item-index="${defaultId}"]`)
+      .querySelector(`[href="#${defaultId}"]`)
+      .closest("li")
       .classList.add("active");
 
-    tInit(timeLineMap[+defaultId]).then(() => (isSplashScreenOpening = false));
+    tInit(timeLineMap[defaultId]).then(() => (isSplashScreenOpening = false));
   };
 
-  // TODO: 함수 단계 쪼개기 작업할 것
-  const handleNavigation = (targetIndex) => {
+  const handleNavigation = (target) => {
     if (isTransitioning || isSplashScreenOpening) return;
-    const current = $mainItemList.querySelector(".active");
-    const currentLi = $navigator.querySelector(".active");
-    if (!current) return;
 
-    const currentIndex = +current.dataset.itemIndex;
-    if (targetIndex === currentIndex) return;
+    const current = $wrapper.querySelector(".active");
+    const currentLi = $navigator.querySelector(".active");
+
+    if (current === target) return;
+
+    const currentIndex = [...$sectionList].indexOf(current);
+    const targetIndex = [...$sectionList].indexOf(target);
+    if (targetIndex === -1) return;
 
     isTransitioning = true;
-    const newUrl = `${window.location.pathname}#main__item--0${targetIndex}`;
+    const newUrl = `${window.location.pathname}#${target.id}`;
     history.pushState(null, "", newUrl);
 
     const direction = targetIndex > currentIndex ? "prev" : "next";
 
-    const newActiveLi = $navigator.querySelector(
-      `[data-item-index="${targetIndex}"]`
-    );
-    const newActive = $mainItemList.querySelector(
-      `[data-item-index="${targetIndex}"]`
-    );
-    if (!newActive) return;
+    const newActiveLi = $navigator
+      .querySelector(`[href="#${target.id}"]`)
+      .closest("li");
 
-    const newActiveChildren = newActive.querySelectorAll("*");
-    const currentChildren = current.querySelectorAll("*");
-
-    // reset style
-    if (newActiveChildren.length > 0) {
-      const container = newActive.querySelector(".container");
-      setTimeout(() => {
-        container.style.visibility = "hidden";
-      }, pageTransitionDuration);
-    }
-    if (currentChildren.length > 0) {
-      const container = current.querySelector(".container");
-      setTimeout(() => {
-        container.style.visibility = "hidden";
-      }, pageTransitionDuration);
-    }
-
-    newActive.classList.add("notransition");
-    newActive.style.transform =
+    target.classList.add("notransition");
+    target.style.transform =
       direction === "prev"
         ? `translateY(${pageTranslateMetric})`
         : `translateY(-${pageTranslateMetric})`;
 
     // 강제 리플로우 발생
-    newActive.offsetHeight;
-    newActive.classList.remove("notransition");
+    target.offsetHeight;
+    target.classList.remove("notransition");
+    target.classList.remove("prev", "next");
+    target.classList.add("active");
 
-    newActive.classList.remove("prev", "next");
-    newActive.classList.add("active");
     newActiveLi.classList.add("active");
     currentLi.classList.remove("active");
 
@@ -122,13 +109,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const handleTransitionEnd = async (e) => {
       if (e.propertyName !== "transform") return;
 
+      const container = current.querySelector(".container");
+      if (container) {
+        container.style.visibility = "hidden";
+      }
+
       e.target.classList.remove("next", "prev");
       e.target.style.transform = "";
 
       const transitionElement = e.target.classList.contains("active");
       if (transitionElement) {
-        const index = +e.target.dataset.itemIndex;
-        timeLineMap[index].restart();
+        timeLineMap[target.id].restart();
         await delayTime(globalTransitionDuration);
         isTransitioning = false;
       }
@@ -137,44 +128,37 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     current.addEventListener("transitionend", handleTransitionEnd);
-    newActive.addEventListener("transitionend", handleTransitionEnd);
+    target.addEventListener("transitionend", handleTransitionEnd);
   };
 
-  // TODO: 지금 #main__item--01 이런식으로 dataItemIndex사하고 있는데 이를 전부 href로 변경해야함.
-  // href 랑 연결되게 설정하는게 맞다. 그리고 href="undefined"로 설정하여 tabMenu 설정해주면 됨
-  //  각 li의 a tag의 href값이 id값과 일치하는지 확인하고 active를 붙혀줘야함.
   $navigator.addEventListener("click", (e) => {
     if (e.target.tagName === "A") {
       e.preventDefault();
     }
     if (isTransitioning) return;
-    const target = e.target.closest("li");
+    const target = e.target.closest("a");
     if (!target) return;
 
-    const currentActive = $navigator.querySelector(".active");
+    const targetId = target.href.split("#")[1];
 
-    if (currentActive.dataset.itemIndex === target.dataset.itemIndex) return;
+    const targetElement = [...$sectionList].find(
+      (element) => element.id === targetId
+    );
 
-    handleNavigation(target.dataset.itemIndex);
+    handleNavigation(targetElement);
   });
-
-  // window.addEventListener("hashchange", (e) => {
-  //   if (isTransitioning) return;
-  //   const target = document.querySelector(window.location.hash);
-  //   const current = $mainItemList.querySelector(".active");
-  //   if (!current) return;
-
-  //   const targetIndex = +target.dataset.itemIndex;
-  //   handleNavigation(targetIndex);
-  // });
 
   document.addEventListener("wheel", (e) => {
     if (isTransitioning) return;
 
-    const current = $mainItemList.querySelector(".active");
+    const current = [...$sectionList].find((element) =>
+      element.classList.contains("active")
+    );
+
+    const currentIndex = [...$sectionList].indexOf(current);
+
     if (!current) return;
 
-    const currentIndex = +current.dataset.itemIndex;
     let targetIndex;
 
     // non_cyclic
@@ -185,24 +169,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (targetIndex < 0 || targetIndex > maxIndex) return;
 
-    const newActive = $mainItemList.querySelector(
-      `[data-item-index="${targetIndex}"]`
-    );
-    if (!newActive) return;
+    const target = $sectionList[targetIndex];
+    if (!target) return;
 
-    handleNavigation(targetIndex);
-
-    // window.location.hash = `main__item--0${targetIndex}`;
+    handleNavigation(target);
   });
 
   const handleSwipe = (startY, endY) => {
     if (isTransitioning) return;
     const deltaY = endY - startY;
     if (Math.abs(deltaY) < swipeThreshold) return;
-    const current = $mainItemList.querySelector(".active");
+
+    const current = [...$sectionList].find((element) =>
+      element.classList.contains("active")
+    );
+
+    const currentIndex = [...$sectionList].indexOf(current);
+
     if (!current) return;
 
-    const currentIndex = +current.dataset.itemIndex;
     let targetIndex;
 
     if (deltaY < 0) {
@@ -213,13 +198,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (targetIndex < 0 || targetIndex > maxIndex) return;
 
-    const newActive = $mainItemList.querySelector(
-      `[data-item-index="${targetIndex}"]`
-    );
-    if (!newActive) return;
+    const target = $sectionList[targetIndex];
+    if (!target) return;
 
-    // window.location.hash = `main__item--0${targetIndex}`;
-    handleNavigation(targetIndex);
+    handleNavigation(target);
   };
 
   document.addEventListener("touchstart", (e) => {
