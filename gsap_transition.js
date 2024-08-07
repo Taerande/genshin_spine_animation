@@ -406,4 +406,90 @@ export const t6 = gsap
     },
     "start+=2.2"
   );
-export const t7 = gsap.timeline({ paused: true });
+export const t7 = gsap
+  .timeline({ paused: true })
+  .to(
+    "#main__item--07 .container",
+    {
+      duration: 0,
+      visibility: "visible",
+    },
+    0
+  )
+  .addLabel("start")
+  .from(
+    "#main__item--07 .title",
+    {
+      scale: 1.3,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power4.easeIn",
+    },
+    "start+=0"
+  )
+  .from(
+    "#main__item--07 .title",
+    {
+      filter: "brightness(4) blur(10px)",
+      duration: 1.5,
+      ease: "power4.easeIn",
+    },
+    "start+=0"
+  )
+  .from(
+    "#main__item--07 .subtitle",
+    {
+      y: -30,
+      duration: 1,
+      opacity: 0,
+      ease: "power4.ease",
+    },
+    "start+=0.6"
+  )
+  .from(
+    "#main__item--07 .content__item",
+    {
+      duration: 1,
+      opacity: 0,
+      ease: "power4.easeIn",
+    },
+    "start+=1"
+  )
+  .from(
+    "#main__item--07 .content__item",
+    {
+      duration: 1,
+      filter: "brightness(5) blur(0)",
+      ease: "power4.easeIn",
+    },
+    "start+=1.3"
+  )
+  .from(
+    "#main__item--07 .item__line",
+    {
+      duration: 1.2,
+      width: 0,
+      ease: "power4.easeIn",
+    },
+    "start+=2"
+  )
+  .from(
+    "#main__item--07 .item__title",
+    {
+      duration: 1.2,
+      y: -30,
+      opacity: 0,
+      ease: "power4.easeIn",
+    },
+    "start+=2.5"
+  )
+  .from(
+    "#main__item--07 .item__caption",
+    {
+      duration: 1.2,
+      y: 30,
+      opacity: 0,
+      ease: "power4.easeIn",
+    },
+    "start+=2.5"
+  );

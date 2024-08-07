@@ -151,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     target.classList.remove("next", "prev");
     target.style.transform = "";
 
+    console.log(timeLineMap[target.id], target.id);
     timeLineMap[target.id].restart();
     await delayTime(globalTransitionDuration);
     isTransitioning = false;
