@@ -11,6 +11,19 @@ const timeLineMap = {
   "main__item--06": t6,
   "main__item--07": t7,
 };
+
+const globalTransitionDuration = 200;
+const pageTransitionDuration = 700;
+const pageTranslateMetric = "60%";
+const swipeThreshold = 50;
+const $navigator = document.querySelector(".msg__navigator");
+const $wrapper = document.querySelector("main.msg__wrapper");
+const $indicator = document.querySelector(".msg__indicator");
+const $sectionList = document.querySelectorAll(
+  "main.msg__wrapper > section.msg__section"
+);
+const maxIndex = $sectionList.length;
+
 const waitForTransition = (element) => {
   return new Promise((resolve) => {
     const handleTransitionEnd = (e) => {
@@ -34,21 +47,16 @@ const getCurrentActiveIndex = (NodeList) => {
   );
 };
 
+const moveIndicator = (activatedNode) => {
+  const currentNavRect = activatedNode.getBoundingClientRect();
+  $indicator.style.transition = `all ${pageTransitionDuration / 2}ms ease`;
+  $indicator.style.top = currentNavRect.top - currentNavRect.height / 2 + "px";
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   let isSplashScreenOpening = true;
   let isTransitioning = false;
   let startY;
-  const globalTransitionDuration = 200;
-  const pageTransitionDuration = 700;
-  const pageTranslateMetric = "60%";
-  const swipeThreshold = 50;
-  const $navigator = document.querySelector(".msg__navigator");
-  const $wrapper = document.querySelector("main.msg__wrapper");
-  const $sectionList = document.querySelectorAll(
-    "main.msg__wrapper > section.msg__section"
-  );
-
-  const maxIndex = $sectionList.length;
 
   const style = getComputedStyle(document.documentElement);
   let preloadImageCount = 0;
@@ -85,6 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .querySelector(`[href="#${defaultId}"]`)
       .closest("li")
       .classList.add("active");
+
+    moveIndicator(
+      $navigator.querySelector(`[href="#${defaultId}"]`).closest("li")
+    );
 
     tInit(timeLineMap[defaultId]).then(() => (isSplashScreenOpening = false));
   };
@@ -124,6 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     newActiveLi.classList.add("active");
     currentLi.classList.remove("active");
+
+    moveIndicator(newActiveLi);
 
     current.classList.remove("active");
     current.classList.add(direction);

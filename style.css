@@ -106,6 +106,7 @@ li {
 }
 .msg__navigator {
   position: fixed;
+  height: 100%;
   left: 0;
   top: 50%;
   width: 230px;
@@ -137,6 +138,7 @@ li {
   }
 
   li {
+    position: relative;
     display: flex;
     flex-direction: column;
     row-gap: 20px;
@@ -150,6 +152,7 @@ li {
 
     & a {
       display: block;
+      line-height: 30px;
       height: 100%;
     }
 
@@ -168,40 +171,61 @@ li {
       }
     }
     &.menu__item--03 {
-      background: var(--navigation__list) no-repeat -2px -84px;
+      background: var(--navigation__list) no-repeat -2px -81px;
 
       &.active {
-        background: var(--navigation__list) no-repeat -240px -84px;
+        background: var(--navigation__list) no-repeat -240px -81px;
       }
     }
     &.menu__item--09 {
-      background: var(--navigation__list) no-repeat -2px -126px;
+      background: var(--navigation__list) no-repeat -2px -119px;
     }
     &.menu__item--04 {
-      background: var(--navigation__list) no-repeat -2px -126px;
+      background: var(--navigation__list) no-repeat -2px -460px;
+
+      & a {
+        position: absolute;
+        line-height: 60px;
+        height: 60px;
+        top: -30px;
+        width: 100%;
+        left: 0;
+      }
 
       &.active {
-        background: var(--navigation__list) no-repeat -240px -126px;
+        background: var(--navigation__list) no-repeat -240px -460px;
       }
     }
     &.menu__item--05 {
-      background: var(--navigation__list) no-repeat -2px -168px;
+      background: var(--navigation__list) no-repeat -2px -150px;
       &.active {
-        background: var(--navigation__list) no-repeat -240px -42px;
+        background: var(--navigation__list) no-repeat -240px -150px;
       }
     }
     &.menu__item--06 {
-      background: var(--navigation__list) no-repeat -2px -210px;
+      background: var(--navigation__list) no-repeat -2px -181px;
       &.active {
-        background: var(--navigation__list) no-repeat -240px -42px;
+        background: var(--navigation__list) no-repeat -240px -181px;
       }
     }
     &.menu__item--07 {
-      background: var(--navigation__list) no-repeat -2px -252px;
+      background: var(--navigation__list) no-repeat -2px -215px;
+
       &.active {
-        background: var(--navigation__list) no-repeat -240px -42px;
+        background: var(--navigation__list) no-repeat -240px -215px;
       }
     }
+  }
+  .msg__indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 177px;
+    height: 84px;
+    z-index: 4;
+    user-select: none;
+    pointer-events: none;
+    background: var(--navigation__indicator) no-repeat 0 bottom;
   }
 }
 
