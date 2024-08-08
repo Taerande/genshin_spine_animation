@@ -136,7 +136,7 @@ li {
     background: var(--navigation__bg) no-repeat center 0;
   }
   ul {
-    position: absolute;
+    position: relative;
     display: block;
     top: 0;
     top: 50%;
@@ -232,7 +232,9 @@ li {
     left: 0;
     width: 177px;
     height: 84px;
-    z-index: 4;
+    margin-left: -15px;
+    margin-top: -6px;
+    z-index: -1;
     user-select: none;
     pointer-events: none;
     background: var(--navigation__indicator) no-repeat 0 bottom;

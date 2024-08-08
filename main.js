@@ -48,15 +48,16 @@ const getCurrentActiveIndex = (NodeList) => {
 };
 
 const moveIndicator = (activatedNode) => {
-  const currentNavRect = activatedNode.getBoundingClientRect();
+  const { offsetHeight, offsetTop } = activatedNode;
   $indicator.style.transition = `all ${pageTransitionDuration / 2}ms ease`;
-  $indicator.style.top = currentNavRect.top - currentNavRect.height / 2 + "px";
+  $indicator.style.top = offsetTop - offsetHeight / 2 + "px";
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   let isSplashScreenOpening = true;
   let isTransitioning = false;
   let startY;
+  const idSet = new Set();
 
   const style = getComputedStyle(document.documentElement);
   let preloadImageCount = 0;
@@ -72,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const init = () => {
     // TODO : 함수 추출하기로 가독성 향상 필요함
-    const idSet = new Set();
     $wrapper.querySelectorAll("section").forEach((element) => {
       idSet.add(element.id);
       element.style.transition = `transform ${pageTransitionDuration}ms ease`;
@@ -151,14 +151,13 @@ document.addEventListener("DOMContentLoaded", () => {
     target.classList.remove("next", "prev");
     target.style.transform = "";
 
-    console.log(timeLineMap[target.id], target.id);
     timeLineMap[target.id].restart();
     await delayTime(globalTransitionDuration);
     isTransitioning = false;
   };
 
   $navigator.addEventListener("click", (e) => {
-    if (e.target.tagName === "A") {
+    if (e.target.tagName === "A" && idSet.has(e.target.href.split("#")[1])) {
       e.preventDefault();
     }
     if (isTransitioning) return;
