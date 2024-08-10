@@ -85,6 +85,14 @@ body {
 li {
   list-style: none;
 }
+a,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+  color: initial; /* 기본 링크 색상 */
+  text-decoration: none; /* 기본 밑줄 제거 */
+}
 .pre-load {
   background-color: black;
   user-select: none;
@@ -112,6 +120,40 @@ li {
     transform: scale(1.5);
     opacity: 1;
     filter: invert(1) blur(20px) grayscale(100%);
+  }
+}
+.material-symbols-outlined {
+  color: white;
+}
+.msg__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  z-index: 5000;
+  background-color: rgba(6, 4, 4, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .msg__hamburger {
+    padding-left: 10px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .msg__header--actions {
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 }
 .msg__navigator {
@@ -192,16 +234,6 @@ li {
     }
     &.menu__item--04 {
       background: var(--navigation__list) no-repeat -2px -460px;
-
-      & a {
-        position: absolute;
-        line-height: 60px;
-        height: 60px;
-        top: -30px;
-        width: 100%;
-        left: 0;
-      }
-
       &.active {
         background: var(--navigation__list) no-repeat -240px -460px;
       }
@@ -238,6 +270,58 @@ li {
     user-select: none;
     pointer-events: none;
     background: var(--navigation__indicator) no-repeat 0 bottom;
+  }
+}
+
+.msg__navigator--mobile {
+  position: fixed;
+  box-sizing: border-box;
+  height: 100%;
+  left: 300px;
+  top: 0;
+  width: 230px;
+  background-color: #141414;
+  z-index: 9999;
+  font-family: sans-serif;
+  padding: 50px 45px;
+  color: #6f6b5f;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  & a {
+    display: block;
+    color: #6f6b5f;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  & a.active {
+    color: #ddb382;
+  }
+
+  .sub__item a {
+    font-weight: normal;
+  }
+
+  .title {
+    & a {
+      color: #ddb382;
+      font-size: 25px;
+      font-weight: bold;
+    }
+  }
+
+  .line {
+    border-bottom: 1px solid #6f6b5f;
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+
+    .material-symbols-outlined {
+      color: #6f6b5f;
+    }
   }
 }
 

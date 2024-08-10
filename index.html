@@ -12,38 +12,97 @@
       href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css"
     />
     <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <!-- <script src="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/iife/spine-player.js"></script> -->
     <script src="./lib/gsap@3.12.5.min.js"></script>
   </head>
   <body>
+    <header class="msg__header">
+      <div class="msg__hamburger">
+        <span class="material-symbols-outlined"> menu </span>
+      </div>
+      <div class="msg__header--actions">
+        <div class="msg__home">
+          <span class="material-symbols-outlined"> home </span>
+        </div>
+        <div class="msg__close">
+          <span class="material-symbols-outlined"> close </span>
+          <span>오늘 그만 보기</span>
+        </div>
+      </div>
+    </header>
     <nav class="msg__navigator">
       <ul>
         <li class="menu__item--01">
-          <a href="#main__item--01"></a>
+          <a href="#main__item--01" data-msg-navigator></a>
         </li>
         <li class="menu__item--02">
-          <a href="#main__item--02"></a>
+          <a href="#main__item--02" data-msg-navigator></a>
         </li>
         <li class="menu__item--03">
-          <a href="#main__item--03"></a>
+          <a href="#main__item--03" data-msg-navigator></a>
         </li>
         <li class="menu__item--09">
-          <a href="undefined"></a>
-        </li>
-        <li class="menu__item--04">
           <a href="#main__item--04"></a>
         </li>
+        <li class="menu__item--04">
+          <a href="#main__item--04" data-msg-navigator></a>
+        </li>
         <li class="menu__item--05">
-          <a href="#main__item--05"></a>
+          <a href="#main__item--05" data-msg-navigator></a>
         </li>
         <li class="menu__item--06">
-          <a href="#main__item--06"></a>
+          <a href="#main__item--06" data-msg-navigator></a>
         </li>
         <li class="menu__item--07">
-          <a href="#main__item--07"></a>
+          <a href="#main__item--07" data-msg-navigator></a>
         </li>
         <span class="msg__indicator"></span>
       </ul>
+    </nav>
+    <nav class="msg__navigator--mobile">
+      <div class="title">
+        <a href="#main__item--01" class="active" data-msg-navigator>WIND</a>
+      </div>
+      <div class="content">
+        <ul class="main__list">
+          <li class="main__item">
+            <a href="#main__item--02" data-msg-navigator>신규서버 야히</a>
+          </li>
+          <li class="main__item">
+            <a href="#main__item--03" data-msg-navigator>클래스 리밸런싱</a>
+          </li>
+          <li class="main__item">
+            <a href="#main__item--04">변화의 바람</a>
+            <ul class="sub__list">
+              <li class="sub__item">
+                <a href="#main__item--04" data-msg-navigator
+                  >- 아덴 월드 거래소</a
+                >
+              </li>
+              <li class="sub__item">
+                <a href="#main__item--05" data-msg-navigator>- 혈맹 리뉴얼</a>
+              </li>
+              <li class="sub__item">
+                <a href="#main__item--06" data-msg-navigator
+                  >- 특화 서버의 변화</a
+                >
+              </li>
+              <li class="sub__item">
+                <a href="#main__item--07" data-msg-navigator>- UI/UX 리뉴얼</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="line"></div>
+      <div class="footer">
+        <span class="material-symbols-outlined"> home </span>
+        <span>공식 홈페이지</span>
+      </div>
     </nav>
     <main class="msg__wrapper">
       <section class="main__item msg__section" id="main__item--01">
