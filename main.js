@@ -1,4 +1,6 @@
 import { t1, t2, t3, t4, t5, t6, t7, tInit } from "./gsap_transition.js";
+import { isMobile } from "./isMobile.js";
+console.log(isMobile);
 (() => {
   const delayTime = (time) =>
     new Promise((resolve) => setTimeout(resolve, time));
@@ -24,6 +26,9 @@ import { t1, t2, t3, t4, t5, t6, t7, tInit } from "./gsap_transition.js";
   const $sectionList = document.querySelectorAll(
     "main.msg__wrapper > section.msg__section"
   );
+  const $hamburger = document.querySelector(".msg__hamburger");
+  const $overlay = document.querySelector(".overlay");
+
   const maxIndex = $sectionList.length;
 
   const waitForTransition = (element) => {
@@ -97,7 +102,9 @@ import { t1, t2, t3, t4, t5, t6, t7, tInit } from "./gsap_transition.js";
         .classList.add("active");
 
       moveIndicator(
-        $navigator.querySelector(`[href="#${defaultId}"]`).closest("li")
+        $navigator
+          .querySelector(`[href="#${defaultId}"][data-msg-navigator]`)
+          .closest("li")
       );
 
       tInit(timeLineMap[defaultId]).then(() => (isSplashScreenOpening = false));
@@ -165,7 +172,7 @@ import { t1, t2, t3, t4, t5, t6, t7, tInit } from "./gsap_transition.js";
       isTransitioning = false;
     };
 
-    $navigator.addEventListener("click", (e) => {
+    const navigatorClickHandler = (e) => {
       if (e.target.tagName === "A" && idSet.has(e.target.href.split("#")[1])) {
         e.preventDefault();
       }
@@ -180,24 +187,10 @@ import { t1, t2, t3, t4, t5, t6, t7, tInit } from "./gsap_transition.js";
       );
 
       handleNavigation(targetElement);
-    });
+    };
 
-    $mobileNavigator.addEventListener("click", (e) => {
-      if (e.target.tagName === "A" && idSet.has(e.target.href.split("#")[1])) {
-        e.preventDefault();
-      }
-      if (isTransitioning) return;
-      const target = e.target.closest("a");
-      if (!target) return;
-
-      const targetId = target.href.split("#")[1];
-
-      const targetElement = [...$sectionList].find(
-        (element) => element.id === targetId
-      );
-
-      handleNavigation(targetElement);
-    });
+    $navigator.addEventListener("click", navigatorClickHandler);
+    $mobileNavigator.addEventListener("click", navigatorClickHandler);
 
     document.addEventListener("wheel", (e) => {
       if (isTransitioning) return;
@@ -247,6 +240,7 @@ import { t1, t2, t3, t4, t5, t6, t7, tInit } from "./gsap_transition.js";
       handleNavigation(target);
     };
 
+    // 모바일 터치 handleNavigation
     document.addEventListener("touchstart", (e) => {
       if (e.target.tagName === "LI") return;
       if (e.touches.length === 1) {
@@ -259,6 +253,17 @@ import { t1, t2, t3, t4, t5, t6, t7, tInit } from "./gsap_transition.js";
         const endY = e.changedTouches[0].clientY;
         handleSwipe(startY, endY);
         startY = undefined; // Reset startX
+      }
+    });
+
+    // 햄버거 이벤트
+    window.addEventListener("click", (e) => {
+      if ($hamburger.contains(e.target)) {
+        $mobileNavigator.classList.add("active");
+        $overlay.classList.add("active");
+      } else {
+        $mobileNavigator.classList.remove("active");
+        $overlay.classList.remove("active");
       }
     });
 

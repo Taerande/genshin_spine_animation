@@ -94,7 +94,7 @@ export const t3 = gsap
   .from(
     "#main__item--03 .title",
     {
-      scale: 1.3,
+      scale: 1.2,
       opacity: 0,
       duration: 0.8,
       ease: "power4.easeIn",
@@ -104,7 +104,7 @@ export const t3 = gsap
   .from(
     "#main__item--03 .title",
     {
-      filter: "brightness(4) blur(10px)",
+      filter: "blur(10px) brightness(4)",
       duration: 0.7,
       ease: "power4.easeIn",
     },
@@ -173,7 +173,7 @@ export const t4 = gsap
   .from(
     "#main__item--04 .title",
     {
-      scale: 1.3,
+      scale: 1.2,
       opacity: 0,
       duration: 0.8,
       ease: "power4.easeIn",
@@ -183,7 +183,7 @@ export const t4 = gsap
   .from(
     "#main__item--04 .title",
     {
-      filter: "brightness(4) blur(10px)",
+      filter: "blur(10px) brightness(4)",
       duration: 0.7,
       ease: "power4.easeIn",
     },
@@ -245,7 +245,7 @@ export const t5 = gsap
   .from(
     "#main__item--05 .title",
     {
-      scale: 1.3,
+      scale: 1.2,
       opacity: 0,
       duration: 0.8,
       ease: "power4.easeIn",
@@ -255,7 +255,7 @@ export const t5 = gsap
   .from(
     "#main__item--05 .title",
     {
-      filter: "brightness(4) blur(10px)",
+      filter: "blur(10px) brightness(4)",
       duration: 1.5,
       ease: "power4.easeIn",
     },
@@ -338,7 +338,7 @@ export const t6 = gsap
   .from(
     "#main__item--06 .title",
     {
-      scale: 1.3,
+      scale: 1.2,
       opacity: 0,
       duration: 0.8,
       ease: "power4.easeIn",
@@ -348,7 +348,7 @@ export const t6 = gsap
   .from(
     "#main__item--06 .title",
     {
-      filter: "brightness(4) blur(10px)",
+      filter: "blur(10px) brightness(4)",
       duration: 1.5,
       ease: "power4.easeIn",
     },
@@ -380,7 +380,7 @@ export const t6 = gsap
       y: -30,
       duration: 1,
       opacity: 0,
-      filter: "brightness(4) blur(10px)",
+      filter: "blur(10px) brightness(4)",
       ease: "power4.ease",
     },
     "start+=2"
@@ -391,7 +391,7 @@ export const t6 = gsap
       y: 30,
       duration: 1,
       opacity: 0,
-      filter: "brightness(4) blur(10px)",
+      filter: "blur(10px) brightness(4)",
       ease: "power4.ease",
     },
     "start+=2.2"
@@ -420,7 +420,7 @@ export const t7 = gsap
   .from(
     "#main__item--07 .title",
     {
-      scale: 1.3,
+      scale: 1.2,
       opacity: 0,
       duration: 0.8,
       ease: "power4.easeIn",
@@ -430,7 +430,7 @@ export const t7 = gsap
   .from(
     "#main__item--07 .title",
     {
-      filter: "brightness(4) blur(10px)",
+      filter: "blur(10px) brightness(4)",
       duration: 1.5,
       ease: "power4.easeIn",
     },

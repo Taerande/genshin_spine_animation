@@ -90,8 +90,11 @@ a:visited,
 a:hover,
 a:focus,
 a:active {
-  color: initial; /* 기본 링크 색상 */
-  text-decoration: none; /* 기본 밑줄 제거 */
+  color: initial;
+  text-decoration: none;
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .pre-load {
   background-color: black;
@@ -131,7 +134,7 @@ a:active {
   left: 0;
   width: 100%;
   height: 56px;
-  z-index: 5000;
+  z-index: 99998;
   background-color: rgba(6, 4, 4, 0.5);
   display: flex;
   justify-content: space-between;
@@ -196,7 +199,7 @@ a:active {
     row-gap: 20px;
     padding: 0;
     margin: 0;
-    width: 235px;
+    width: 150px;
     height: 30px;
     line-height: 30px;
     text-indent: -8000px;
@@ -277,27 +280,44 @@ a:active {
   position: fixed;
   box-sizing: border-box;
   height: 100%;
-  left: 300px;
   top: 0;
-  width: 230px;
+  min-width: 200px;
   background-color: #141414;
-  z-index: 9999;
+  z-index: 99999;
   font-family: sans-serif;
-  padding: 50px 45px;
+  padding: 50px 36px;
   color: #6f6b5f;
   overflow-x: hidden;
   overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  line-height: 38px;
+
+  &.active {
+    transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transform: translateX(0%);
+  }
 
   & a {
     display: block;
     color: #6f6b5f;
-    font-size: 16px;
     font-weight: bold;
     transition: all 0.3s ease;
   }
 
+  /* & a:hover {
+    color: #ddb382;
+  } */
+
   & a.active {
     color: #ddb382;
+  }
+
+  .main__list {
+    padding-top: 24px;
+  }
+  .main__item {
+    font-size: 16px;
   }
 
   .sub__item a {
@@ -307,21 +327,45 @@ a:active {
   .title {
     & a {
       color: #ddb382;
-      font-size: 25px;
+      font-size: 28px;
       font-weight: bold;
     }
   }
 
+  .sub__list {
+    line-height: 25px;
+  }
+
+  .sub__item {
+    font-size: 14px;
+  }
+
   .line {
+    margin-top: 24px;
+    margin-bottom: 16px;
     border-bottom: 1px solid #6f6b5f;
   }
   .footer {
+    line-height: 30px;
     display: flex;
     align-items: center;
 
     .material-symbols-outlined {
       color: #6f6b5f;
     }
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 99998;
+  transition: background-color 0.3s ease;
+  pointer-events: none;
+
+  &.active {
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -432,7 +476,7 @@ a:active {
       height: 171px;
       margin-top: -221px;
       margin-left: -609px;
-      filter: brightness(1) blur(0);
+      filter: blur(0px) brightness(1);
       background-image: var(--section_3--title);
       background-repeat: no-repeat;
       background-position: center 0;
@@ -546,7 +590,7 @@ a:active {
       margin-top: -321px;
       margin-left: -608px;
       background: var(--section_4--title) no-repeat center 0;
-      filter: brightness(1) blur(0px);
+      filter: blur(0px) brightness(1);
     }
     .subtitle {
       width: 809px;
@@ -599,8 +643,7 @@ a:active {
       background-image: var(--section_5--title);
       background-repeat: no-repeat;
       background-position: center 0;
-
-      filter: brightness(1) blur(0px);
+      filter: blur(0px) brightness(1);
     }
     .subtitle {
       width: 809px;
@@ -740,7 +783,7 @@ a:active {
       margin-top: -322px;
       margin-left: -398px;
       background: var(--section_6--title) no-repeat center 0;
-      filter: brightness(1) blur(0px);
+      filter: blur(0px) brightness(1);
     }
     .subtitle {
       width: 498px;
@@ -843,7 +886,7 @@ a:active {
       margin-top: -277px;
       margin-left: -321px;
       background: var(--section_7--title) no-repeat center 0;
-      filter: brightness(1) blur(0);
+      filter: blur(0px) brightness(1);
     }
 
     .subtitle {
