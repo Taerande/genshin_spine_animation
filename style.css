@@ -17,6 +17,37 @@
 
   --section_2--title: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/aa46ef5f7381ae87d2aefb7fd6655cb8bb445b00.webp");
   --section_2--subtitle: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/38caa40123e71d7453b510150b269d0e7e12331c.webp");
+  --section_2--content--bg: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/3ae405f8d744d594f4201a4a5ee25030932c1ae6.webp");
+  --section_2--content--header--bg: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/2217aca60d77c3d0577b2356d153871600b47e8a.webp");
+  --section_2--tab: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/9e29e38a4db86660152e6b604b3506fd35e5b90e.webp");
+  --section_2--tab--indicator: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/dcafc7ca026a20f66e3821d96282119275396d29.webp");
+  --section_2--tab--active: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/a4809a499d166def268ba36189d0b05c65560ff4.webp");
+
+  --section_2--main__item--01--title: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/c70e1b61d2e3bb93b59fd2edcfef971e727a693f.webp");
+  --section_2--main__item--01--sub--01__content: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/dc4f53331e69a1b7468e8d477426ff3e9d6b9365.webp");
+  --section_2--main__item--01--sub--01__caption: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/78298998fbe18ee8855e95aead52f748da3b4a1a.webp");
+  --section_2--main__item--01--sub--02__content: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/6698a79f49b58f2d5935ff2d91c2baea0de61abf.webp");
+  --section_2--main__item--01--sub--02__caption: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/7baac6fea610a41180ca80c7c27cdfbba7ccc00c.webp");
+  --section_2--main__item--01--sub--03__content: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/f2c2f9c715a96b11b42ec978e22db0fe7c17d746.webp");
+  --section_2--main__item--01--sub--03__caption: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/642bde0dd6aefd2f916fcaa657236e085888227e.webp");
+
+  --section_2--main__item--02--title: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/58cd70a8af1bb7d3b5d3031955da378ae11d01b4.webp");
+  --section_2--main__item--02--sub--01__content: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/b5c834af0abb5ee6c0182fb4ce00134c18ff6db7.webp");
+  --section_2--main__item--02--sub--01__caption: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/9432a416d895fd5698d866bd5beabfa8d610c417.webp");
+  --section_2--main__item--02--sub--02__content: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/515febeeba444ea8ca99e4dbcf4ae61e609a4d6e.webp");
+  --section_2--main__item--02--sub--02__caption: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/fdb793eba91b553da8134a2f4543d68a460367eb.webp");
+  --section_2--main__item--02--sub--03__content: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/065c46e231300109a7ee8df190f4271ce9bd8e67.webp");
+  --section_2--main__item--02--sub--03__caption: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/a26cc5eb9a25ce7090b7a1ec83cfdf71be6d328f.webp");
+
+  --section_2--main__item--03--title: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/0cd47224271b99db0c96c5afd1f9db6549cee1e5.webp");
+  --section_2--main__item--03--sub--01__content: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/f6da2cc84fff366dfaacac0ca34a95457a52851e.webp");
+  --section_2--main__item--03--sub--01__caption: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/abd6f43294fac7a325ee2b1067bfccd6f9907377.webp");
+  --section_2--main__item--03--sub--02__content: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/60399924e5dc50b5c140fb1990af5cf158837ce1.webp");
+  --section_2--main__item--03--sub--02__caption: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/742aaefc452b59f87d151076a84270f6f2d2dbdf.webp");
+  --section_2--main__item--03--sub--03__content: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/689d689db223f20cf2d301b1c8fa75b1affb1c91.webp");
+  --section_2--main__item--03--sub--03__caption: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/5262e2e6b046b4d3a6f8493cb1f006e8c3195fe4.webp");
+
+  --section_2--cta: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section1/5d0366af754f0a8ca5d063ec690e22dda6de2d4a.webp");
 
   --section_3--title: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section2/573f029039b91df61932eb0112b87ca4ec08d086.webp");
   --section_3--subtitle: url("https://assets.playnccdn.com/res/lineage/update/2024/240620_update/2nd/pc/img/section2/28501d6017216f0423a61db90895b09b75952d98.webp");
@@ -276,7 +307,7 @@ a:active {
   }
 }
 
-.msg__navigator--mobile {
+.msg__navigator--drawer {
   position: fixed;
   box-sizing: border-box;
   height: 100%;
@@ -447,6 +478,10 @@ a:active {
   #main__item--02 {
     background-image: var(--bg_2);
 
+    &.mobile {
+      background-image: var(--bg_1);
+    }
+
     .title {
       width: 697px;
       height: 174px;
@@ -466,6 +501,84 @@ a:active {
       background-repeat: no-repeat;
       background-position: center center;
       background-image: var(--section_2--subtitle);
+    }
+
+    .content__tab {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1140px;
+      height: 91px;
+      margin-left: -570px;
+      margin-top: -143px;
+      background: var(--section_2--content--header--bg) no-repeat center 0;
+
+      .tab {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+
+        &.active::after {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          content: "";
+          width: 50px;
+          height: 38px;
+          margin-left: -25px;
+          margin-top: -14px;
+          background: var(--section_2--tab--indicator) no-repeat center center;
+        }
+      }
+
+      .tab__item--01 {
+        width: 226px;
+        height: 88px;
+        margin-top: -44px;
+        margin-left: -413px;
+        background: var(--section_2--tab) no-repeat 0 0;
+
+        &.active {
+          background: var(--section_2--tab--active) no-repeat 0 0;
+        }
+      }
+      .tab__item--02 {
+        width: 250px;
+        height: 88px;
+        margin-top: -44px;
+        margin-left: -128px;
+        background: var(--section_2--tab) no-repeat 50% 0;
+        background-position-x: -273px !important;
+        &.active {
+          background: var(--section_2--tab--active) no-repeat 50% 0;
+        }
+      }
+      .tab__item--03 {
+        width: 205px;
+        height: 88px;
+        margin-top: -44px;
+        margin-left: 194px;
+        background: var(--section_2--tab) no-repeat right 0;
+        &.active {
+          background: var(--section_2--tab--active) no-repeat right 0;
+        }
+      }
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1140px;
+      height: 535px;
+      margin-left: -570px;
+      margin-top: -143px;
+
+      background: var(--section_2--content--bg) no-repeat center 0;
+
+      ul {
+      }
     }
   }
   #main__item--03 {
@@ -816,7 +929,7 @@ a:active {
           width: 359px;
           height: 319px;
           margin-top: -150px;
-          filter: brightness(1) blur(0px);
+          filter: blur(0px) brightness(1);
         }
         .item__caption {
           position: absolute;
@@ -824,7 +937,7 @@ a:active {
           left: 50%;
           width: 193px;
           height: 83px;
-          filter: brightness(1) blur(0px);
+          filter: blur(0px) brightness(1);
         }
       }
       .content__item--01 {
@@ -982,7 +1095,7 @@ a:active {
   }
   .active {
     z-index: 3;
-    transform: translateY(0%) !important;
+    transform: translateY(0%);
   }
   .next {
     z-index: 4;

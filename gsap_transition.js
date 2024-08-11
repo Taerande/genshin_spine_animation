@@ -39,7 +39,7 @@ export const t1 = gsap
     "#main__item--01 .container",
     {
       duration: 0,
-      visibility: "visible",
+      visibility: "hidden",
     },
     0
   )
