@@ -271,7 +271,6 @@ import { isMobile } from "./isMobile.js";
             element.classList.remove("active");
           });
 
-        console.log($targetLi.dataset.msgTab);
         document
           .querySelector(
             `.content [data-msg-tab="${$targetLi.dataset.msgTab}"]`
