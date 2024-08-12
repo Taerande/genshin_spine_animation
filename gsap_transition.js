@@ -93,7 +93,7 @@ export const t2 = gsap
   .from(
     "#main__item--02 .content__tab",
     {
-      width: 0,
+      delay: 0.4,
       duration: 1,
       opacity: 0,
       filter: "brightness(4)",
