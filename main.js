@@ -255,6 +255,29 @@ import { isMobile } from "./isMobile.js";
         closeDrawer();
       }
       navigatorClickHandler(e);
+
+      if (document.querySelector(".content__tab").contains(e.target)) {
+        document
+          .querySelector(".content__tab")
+          .querySelectorAll(".tab")
+          .forEach((element) => {
+            element.classList.remove("active");
+          });
+        const $targetLi = e.target.closest("li");
+        $targetLi.classList.add("active");
+        document
+          .querySelectorAll("#main__item--02 .content > ul > li")
+          .forEach((element) => {
+            element.classList.remove("active");
+          });
+
+        console.log($targetLi.dataset.msgTab);
+        document
+          .querySelector(
+            `.content [data-msg-tab="${$targetLi.dataset.msgTab}"]`
+          )
+          .classList.add("active");
+      }
     });
 
     essentialImages.forEach((element) => {

@@ -63,6 +63,7 @@ export const t2 = gsap
     },
     0
   )
+  .addLabel("start")
   .from("#main__item--02 .title", {
     duration: 1,
     opacity: 0,
@@ -78,6 +79,47 @@ export const t2 = gsap
       ease: "power4.ease",
     },
     "-=0.3"
+  )
+  .from(
+    "#main__item--02 .content",
+    {
+      width: 0,
+      duration: 1,
+      opacity: 0,
+      ease: "power4.ease",
+    },
+    "start+=1.3"
+  )
+  .from(
+    "#main__item--02 .content__tab",
+    {
+      width: 0,
+      duration: 1,
+      opacity: 0,
+      filter: "brightness(4)",
+      ease: "power4.ease",
+    },
+    "start+=1.3"
+  )
+  .from(
+    "#main__item--02 .main__title",
+    {
+      y: -30,
+      duration: 1,
+      opacity: 0,
+      ease: "power4.ease",
+    },
+    "start+=2"
+  )
+  .from(
+    "#main__item--02 .sub__list",
+    {
+      y: 30,
+      duration: 1,
+      opacity: 0,
+      ease: "power4.ease",
+    },
+    "start+=2.2"
   );
 
 export const t3 = gsap
