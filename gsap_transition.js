@@ -1,36 +1,33 @@
-export const tInit = (timeLine) =>
+export const tInit = () =>
   new Promise((resolve) => {
-    gsap
+    const tl = gsap
       .timeline({
+        paused: true,
         onComplete: () => {
-          timeLine.play();
           resolve();
         },
       })
+      .addLabel("tInit")
       .to(
         ".ms__logo",
         {
-          scale: 1,
-          opacity: 1,
-          filter: "invert(1) blur(0px) grayscale(0%)",
-          duration: 1,
-          // duration: 0,
+          scale: 1.5,
+          filter: "invert(1) blur(20px) grayscale(100%)",
+          duration: 0.7,
+          ease: "power4.ease",
         },
-        0
+        "tInit+=1"
       )
       .to(
         ".pre-load",
         {
           opacity: 0,
           duration: 0.7,
-          // duration: 0,
-          scale: 1.2,
-          filter: "brightness(4) blur(20px)",
-          delay: 2,
-          // delay: 0,
         },
-        0
+        "tInit+=1"
       );
+
+    tl.restart();
   });
 
 export const t1 = gsap
@@ -54,7 +51,10 @@ export const t1 = gsap
   );
 
 export const t2 = gsap
-  .timeline({ paused: true })
+  .timeline({
+    paused: true,
+  })
+  .addLabel("start")
   .to(
     "#main__item--02 .container",
     {
@@ -63,7 +63,6 @@ export const t2 = gsap
     },
     0
   )
-  .addLabel("start")
   .from("#main__item--02 .title", {
     duration: 1,
     opacity: 0,

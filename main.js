@@ -102,7 +102,7 @@ import { isMobile } from "./isMobile.js";
     const idSet = new Set();
 
     const style = getComputedStyle(document.documentElement);
-    let preloadImageCount = 0;
+
     const essentialImages = [
       style.getPropertyValue("--bg_1").slice(5, -2),
       style.getPropertyValue("--bg_2").slice(5, -2),
@@ -113,7 +113,7 @@ import { isMobile } from "./isMobile.js";
       style.getPropertyValue("--bg_7").slice(5, -2),
     ];
 
-    const init = () => {
+    const init = async () => {
       $wrapper.querySelectorAll("section").forEach((element) => {
         idSet.add(element.id);
         element.style.transition = `transform ${pageTransitionDuration}ms ease`;
@@ -130,14 +130,12 @@ import { isMobile } from "./isMobile.js";
       current.classList.add("active");
 
       moveIndicator(current.id, null);
-
-      tInit(timeLineMap[current.id]).then(
-        () => (isSplashScreenOpening = false)
-      );
+      await tInit();
+      timeLineMap[current.id].play();
+      isSplashScreenOpening = false;
     };
 
     const handleNavigation = async (target) => {
-      // TODO : 함수 추출하기로 가독성 향상 필요함
       if (isTransitioning || isSplashScreenOpening) return;
 
       const current = [...$sectionList].find((element) =>
@@ -279,18 +277,20 @@ import { isMobile } from "./isMobile.js";
       }
     });
 
-    essentialImages.forEach((element) => {
-      const img = new Image();
-      img.onload = () => {
-        preloadImageCount += 1;
-        if (maxIndex === preloadImageCount) {
-          init();
-        }
-      };
-      img.importance = "high";
-      img.fetchPriority = "high";
-      img.loading = "eager";
-      img.src = element;
+    const preloadImage = (src) =>
+      new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          resolve();
+        };
+        img.importance = "high";
+        img.fetchPriority = "high";
+        img.loading = "eager";
+        img.src = src;
+      });
+
+    Promise.all(essentialImages.map(preloadImage)).then(() => {
+      init();
     });
   });
 })();

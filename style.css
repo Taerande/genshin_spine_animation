@@ -146,14 +146,13 @@ a:active {
   .ms__logo {
     width: 450px;
     height: 150px;
-    background-image: var(--msg__logo);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
 
     transform: scale(1.5);
     opacity: 1;
-    filter: invert(1) blur(20px) grayscale(100%);
+    filter: invert(1) blur(0px) grayscale(0%);
   }
 }
 .material-symbols-outlined {
