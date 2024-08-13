@@ -22,6 +22,7 @@ export const tInit = () =>
         ".pre-load",
         {
           opacity: 0,
+          filter: "blur(30px)",
           duration: 0.7,
         },
         "tInit+=1"

@@ -277,6 +277,15 @@ import { isMobile } from "./isMobile.js";
       }
     });
 
+    const progressIndicator = document.querySelector(
+      ".msg__progress--indicator"
+    );
+    const interval = setInterval(() => {
+      progressIndicator.style.width = msg.preloadProgress + "%";
+      if (msg.preloadProgress * 1 >= 100) {
+        clearInterval(interval);
+      }
+    }, 16);
     const preloadImage = (src) =>
       new Promise((resolve) => {
         const img = new Image();

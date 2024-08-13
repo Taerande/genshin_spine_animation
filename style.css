@@ -141,7 +141,7 @@ a:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  filter: brightness(1) blur(0px);
+  filter: blur(0px);
 
   .ms__logo {
     width: 450px;
@@ -153,6 +153,27 @@ a:active {
     transform: scale(1.5);
     opacity: 1;
     filter: invert(1) blur(0px) grayscale(0%);
+  }
+
+  .msg__progress--bar {
+    position: absolute;
+    width: 600px;
+    height: 4px;
+    border-radius: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 180px;
+    background-color: #363636;
+    overflow: hidden;
+    .msg__progress--indicator {
+      width: 0px;
+      height: 4px;
+      padding-left: 5px;
+      border-radius: 10px;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
   }
 }
 .material-symbols-outlined {
