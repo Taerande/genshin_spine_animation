@@ -11,7 +11,7 @@ export const tInit = () =>
       .to(
         ".ms__logo",
         {
-          scale: 1.5,
+          scale: 1.3,
           filter: "invert(1) blur(20px) grayscale(100%)",
           duration: 0.7,
           ease: "power4.ease",

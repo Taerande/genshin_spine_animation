@@ -280,6 +280,9 @@ import { isMobile } from "./isMobile.js";
     const progressIndicator = document.querySelector(
       ".msg__progress--indicator"
     );
+    if (!window.msg) {
+      window.msg = {};
+    }
     const interval = setInterval(() => {
       progressIndicator.style.width = msg.preloadProgress + "%";
       if (msg.preloadProgress * 1 >= 100) {
