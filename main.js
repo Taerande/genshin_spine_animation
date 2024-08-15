@@ -18,7 +18,7 @@ import { isMobile } from "./isMobile.js";
   const globalTransitionDuration = 200;
   const pageTransitionDuration = 700;
   const pageTranslateMetric = "60%";
-  const swipeThreshold = 50;
+  const swipeThreshold = 80;
   const $navigator = document.querySelector(".msg__navigator");
   const $drawer = document.querySelector(".msg__navigator--drawer");
   const $wrapper = document.querySelector("main.msg__wrapper");
@@ -28,8 +28,6 @@ import { isMobile } from "./isMobile.js";
   );
   const $hamburger = document.querySelector(".msg__hamburger");
   const $overlay = document.querySelector(".overlay");
-
-  const maxIndex = $sectionList.length;
 
   const waitForTransition = (element) => {
     return new Promise((resolve) => {
@@ -42,10 +40,24 @@ import { isMobile } from "./isMobile.js";
     });
   };
 
+  const resetPositionClass = (target) => {
+    $sectionList.forEach((element) => {
+      element.classList.remove("prev", "next");
+    });
+    target.classList.add("active");
+    const targetIdx = [...$sectionList].indexOf(target);
+    if (targetIdx - 1 >= 0) {
+      $sectionList[targetIdx - 1].classList.add("prev");
+    }
+    if (targetIdx + 1 <= $sectionList.length - 1) {
+      $sectionList[targetIdx + 1].classList.add("next");
+    }
+  };
+
   const getDirection = (NodeList, current, target) => {
     const currentIndex = [...NodeList].indexOf(current);
     const targetIndex = [...NodeList].indexOf(target);
-    return targetIndex > currentIndex ? "prev" : "next";
+    return targetIndex > currentIndex ? "next" : "prev";
   };
 
   const openDrawer = () => {
@@ -116,7 +128,9 @@ import { isMobile } from "./isMobile.js";
     const init = async () => {
       $wrapper.querySelectorAll("section").forEach((element) => {
         idSet.add(element.id);
-        element.style.transition = `transform ${pageTransitionDuration}ms ease`;
+        if (isMobile) {
+          element.classList.add("mobile");
+        }
       });
       const defaultHash = window.location.hash.slice(1);
       let current;
@@ -127,7 +141,7 @@ import { isMobile } from "./isMobile.js";
         current = $wrapper.querySelector(`#${firstId}`);
         history.replaceState(null, null, `#${firstId}`);
       }
-      current.classList.add("active");
+      resetPositionClass(current);
 
       moveIndicator(current.id, null);
       await tInit();
@@ -149,32 +163,28 @@ import { isMobile } from "./isMobile.js";
       history.pushState(null, "", newUrl);
 
       const direction = getDirection($sectionList, current, target);
+      // 초기 클래스 설정
+      target.classList.add(direction);
 
-      target.classList.add("notransition");
-      target.style.transform =
-        direction === "prev"
-          ? `translateY(${pageTranslateMetric})`
-          : `translateY(-${pageTranslateMetric})`;
-
-      // 강제 리플로우 발생
+      // reflow
       target.offsetHeight;
-      target.classList.remove("notransition");
-      target.classList.remove("prev", "next");
-      target.style.transform = "";
-      target.classList.add("active");
 
-      moveIndicator(target.id, current.id);
-
+      // transition
+      target.classList.add("to-active");
+      current.classList.add(direction === "next" ? "to-prev" : "to-next");
       current.classList.remove("active");
-      current.classList.add(direction);
-
+      moveIndicator(target.id, current.id);
       await waitForTransition(target);
+
       const container = current.querySelector(".container");
       if (container) {
         container.style.visibility = "hidden";
       }
 
-      target.classList.remove("next", "prev");
+      // 클래스 정리
+      target.classList.remove("to-active");
+      current.classList.remove("to-next", "to-prev");
+      resetPositionClass(target);
 
       timeLineMap[target.id].restart();
       await delayTime(globalTransitionDuration);
@@ -207,30 +217,26 @@ import { isMobile } from "./isMobile.js";
 
       let targetIndex;
 
-      if (delta < 0) {
+      if (delta > 0) {
         targetIndex = currentActiveIndex - 1;
       } else {
         targetIndex = currentActiveIndex + 1;
       }
-      if (targetIndex < 0 || targetIndex > maxIndex) return;
+      if (targetIndex < 0 || targetIndex > $sectionList.length) return;
 
       const target = $sectionList[targetIndex];
       if (!target) return;
 
       handleNavigation(target);
+      $sectionList.forEach((element) => {
+        element.style.transform = "";
+      });
     };
 
     document.addEventListener("wheel", (e) =>
-      handleNavigationBasedOnDelta(e.deltaY)
+      handleNavigationBasedOnDelta(-e.deltaY)
     );
 
-    const handleSwipe = (startY, endY) => {
-      const deltaY = endY - startY;
-      if (Math.abs(deltaY) < swipeThreshold) return;
-      handleNavigationBasedOnDelta(deltaY);
-    };
-
-    // 모바일 터치 handleNavigation
     document.addEventListener("touchstart", (e) => {
       if (e.target.tagName === "LI") return;
       if (e.touches.length === 1) {
@@ -238,12 +244,54 @@ import { isMobile } from "./isMobile.js";
       }
     });
 
-    document.addEventListener("touchend", (e) => {
-      if (startY !== undefined) {
-        const endY = e.changedTouches[0].clientY;
-        handleSwipe(startY, endY);
-        startY = undefined;
+    document.addEventListener("touchmove", (e) => {
+      const currentY = e.touches[0].clientY;
+      const diffY = currentY - startY;
+      if (isTransitioning) return;
+      const currentActiveIndex = getCurrentActiveIndex($sectionList);
+      if (currentActiveIndex < 0) return;
+      if (currentActiveIndex === $sectionList.length - 1 && diffY < 0) return;
+      $sectionList[
+        currentActiveIndex
+      ].style.transform = `translateY(${diffY}px)`;
+
+      if ($sectionList[currentActiveIndex - 1]) {
+        $sectionList[
+          currentActiveIndex - 1
+        ].style.transform = `translateY(calc(-50% + ${diffY / 2}px))`;
       }
+      if ($sectionList[currentActiveIndex + 1]) {
+        $sectionList[
+          currentActiveIndex + 1
+        ].style.transform = `translateY(calc(50% + ${diffY / 2}px))`;
+      }
+    });
+
+    document.addEventListener("touchend", async (e) => {
+      if (startY === undefined) return;
+      const endY = e.changedTouches[0].clientY;
+      const deltaY = endY - startY;
+      if (deltaY === 0) return;
+      if (Math.abs(deltaY) < swipeThreshold) {
+        const currentActiveIndex = getCurrentActiveIndex($sectionList);
+        if (currentActiveIndex < 0) return;
+        if (currentActiveIndex === $sectionList.length - 1 && deltaY < 0)
+          return;
+        isTransitioning = true;
+        $sectionList[currentActiveIndex].style.transition =
+          "transform 0.5s ease";
+        $sectionList[currentActiveIndex].style.transform = "translateY(0%)";
+
+        waitForTransition($sectionList[currentActiveIndex]).then(() => {
+          $sectionList[currentActiveIndex].style.transition = "";
+          $sectionList[currentActiveIndex].style.transform = "";
+          isTransitioning = false;
+        });
+        return;
+      }
+      if (isTransitioning) return;
+      handleNavigationBasedOnDelta(deltaY);
+      startY = undefined;
     });
 
     document.addEventListener("click", (e) => {
