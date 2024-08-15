@@ -210,7 +210,7 @@ a:active {
     gap: 16px;
   }
 }
-.msg__navigator {
+#msg-aside__container {
   position: fixed;
   height: 100%;
   left: 0;
@@ -218,14 +218,13 @@ a:active {
   width: 230px;
   transform: translateY(-50%);
   z-index: 9999;
-  margin-top: -6px;
-  margin-left: -1px;
 
   &::before {
     position: absolute;
     top: 50%;
     width: 380px;
     height: 1080px;
+    margin-left: -1px;
     margin-top: -540px;
     content: "";
     z-index: 4;
@@ -262,49 +261,49 @@ a:active {
       height: 100%;
     }
 
-    &.menu__item--01 {
+    &.menu__item--01 > a {
       background: var(--navigation__list) no-repeat -2px 0;
 
       &.active {
         background: var(--navigation__list) no-repeat -240px 0;
       }
     }
-    &.menu__item--02 {
+    &.menu__item--02 > a {
       background: var(--navigation__list) no-repeat -2px -42px;
 
       &.active {
         background: var(--navigation__list) no-repeat -240px -42px;
       }
     }
-    &.menu__item--03 {
+    &.menu__item--03 > a {
       background: var(--navigation__list) no-repeat -2px -81px;
 
       &.active {
         background: var(--navigation__list) no-repeat -240px -81px;
       }
     }
-    &.menu__item--09 {
+    &.menu__item--09 > a {
       background: var(--navigation__list) no-repeat -2px -119px;
     }
-    &.menu__item--04 {
+    &.menu__item--04 > a {
       background: var(--navigation__list) no-repeat -2px -460px;
       &.active {
         background: var(--navigation__list) no-repeat -240px -460px;
       }
     }
-    &.menu__item--05 {
+    &.menu__item--05 > a {
       background: var(--navigation__list) no-repeat -2px -150px;
       &.active {
         background: var(--navigation__list) no-repeat -240px -150px;
       }
     }
-    &.menu__item--06 {
+    &.menu__item--06 > a {
       background: var(--navigation__list) no-repeat -2px -181px;
       &.active {
         background: var(--navigation__list) no-repeat -240px -181px;
       }
     }
-    &.menu__item--07 {
+    &.menu__item--07 > a {
       background: var(--navigation__list) no-repeat -2px -215px;
 
       &.active {
@@ -312,14 +311,14 @@ a:active {
       }
     }
   }
-  .msg__indicator {
+  #msg-aside__indicator {
     position: absolute;
     top: 0;
     left: 0;
     width: 177px;
     height: 84px;
-    margin-left: -15px;
-    margin-top: -6px;
+    margin-left: -16px;
+    margin-top: -5px;
     z-index: -1;
     user-select: none;
     pointer-events: none;
@@ -327,7 +326,7 @@ a:active {
   }
 }
 
-.msg__navigator--drawer {
+#msg-navigator__container {
   position: fixed;
   box-sizing: border-box;
   height: 100%;
@@ -407,7 +406,7 @@ a:active {
   }
 }
 
-.overlay {
+.msg-overlay {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0);
@@ -434,7 +433,7 @@ a:active {
     filter: brightness(0.7);
   }
 }
-.msg__wrapper {
+#msg-fullpage__container {
   height: 100%;
   width: 100%;
 

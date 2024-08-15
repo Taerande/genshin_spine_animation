@@ -19,15 +19,20 @@ import { isMobile } from "./isMobile.js";
   const pageTransitionDuration = 700;
   const pageTranslateMetric = "60%";
   const swipeThreshold = 80;
-  const $navigator = document.querySelector(".msg__navigator");
-  const $drawer = document.querySelector(".msg__navigator--drawer");
-  const $wrapper = document.querySelector("main.msg__wrapper");
-  const $indicator = document.querySelector(".msg__indicator");
-  const $sectionList = document.querySelectorAll(
-    "main.msg__wrapper > section.msg__section"
-  );
-  const $hamburger = document.querySelector(".msg__hamburger");
-  const $overlay = document.querySelector(".overlay");
+  const $asideNavigator = document.querySelector("#msg-aside__container");
+  const $drawerNavigator = document.querySelector("#msg-navigator__container");
+  const $wrapper = document.querySelector("#msg-fullpage__container");
+  const $indicator = document.querySelector("#msg-aside__indicator");
+  const $sectionList = [
+    ...document.querySelectorAll(
+      "#msg-fullpage__container > section.msg-fullpage__section"
+    ),
+  ];
+  const $hamburger = document.querySelector("#msg-navigator__toggle");
+
+  const $overlay = document.createElement("div");
+  $overlay.classList.add("msg-overlay");
+  document.body.appendChild($overlay);
 
   const waitForTransition = (element) => {
     return new Promise((resolve) => {
@@ -45,7 +50,7 @@ import { isMobile } from "./isMobile.js";
       element.classList.remove("prev", "next");
     });
     target.classList.add("active");
-    const targetIdx = [...$sectionList].indexOf(target);
+    const targetIdx = $sectionList.indexOf(target);
     if (targetIdx - 1 >= 0) {
       $sectionList[targetIdx - 1].classList.add("prev");
     }
@@ -54,19 +59,19 @@ import { isMobile } from "./isMobile.js";
     }
   };
 
-  const getDirection = (NodeList, current, target) => {
-    const currentIndex = [...NodeList].indexOf(current);
-    const targetIndex = [...NodeList].indexOf(target);
+  const getDirection = (current, target) => {
+    const currentIndex = $sectionList.indexOf(current);
+    const targetIndex = $sectionList.indexOf(target);
     return targetIndex > currentIndex ? "next" : "prev";
   };
 
   const openDrawer = () => {
-    $drawer.classList.add("active");
+    $drawerNavigator.classList.add("active");
     $overlay.classList.add("active");
   };
 
   const closeDrawer = () => {
-    $drawer.classList.remove("active");
+    $drawerNavigator.classList.remove("active");
     $overlay.classList.remove("active");
   };
 
@@ -77,15 +82,19 @@ import { isMobile } from "./isMobile.js";
   };
 
   const moveIndicator = async (targetId, currentId) => {
-    const $targetNav = $navigator
-      .querySelector(`[href="#${targetId}"][data-msg-navigator]`)
+    const $targetNav = $asideNavigator
+      .querySelector(`a[href="#${targetId}"][data-msg-navigator]`)
       .closest("li");
-    $drawer
-      .querySelector(`[href="#${targetId}"][data-msg-navigator]`)
+
+    $drawerNavigator
+      .querySelector(`a[href="#${targetId}"][data-msg-navigator]`)
       .classList.add("active");
 
-    $targetNav.classList.add("active");
+    $asideNavigator
+      .querySelector(`a[href="#${targetId}"][data-msg-navigator]`)
+      .classList.add("active");
 
+    // TODO: 여기 로직 좋은거 있으면 변경 필요함
     const { offsetHeight, offsetTop } = $targetNav;
     $indicator.style.transition = `transform ${
       pageTransitionDuration / 2
@@ -97,11 +106,10 @@ import { isMobile } from "./isMobile.js";
     closeDrawer();
 
     if (currentId) {
-      $navigator
-        .querySelector(`[href="#${currentId}"][data-msg-navigator]`)
-        .closest("li")
+      $asideNavigator
+        .querySelector(`a[href="#${currentId}"][data-msg-navigator]`)
         .classList.remove("active");
-      $drawer
+      $drawerNavigator
         .querySelector(`[href="#${currentId}"][data-msg-navigator]`)
         .classList.remove("active");
     }
@@ -152,7 +160,7 @@ import { isMobile } from "./isMobile.js";
     const handleNavigation = async (target) => {
       if (isTransitioning || isSplashScreenOpening) return;
 
-      const current = [...$sectionList].find((element) =>
+      const current = $sectionList.find((element) =>
         element.classList.contains("active")
       );
 
@@ -162,7 +170,7 @@ import { isMobile } from "./isMobile.js";
       const newUrl = `${window.location.pathname}#${target.id}`;
       history.pushState(null, "", newUrl);
 
-      const direction = getDirection($sectionList, current, target);
+      const direction = getDirection(current, target);
       // 초기 클래스 설정
       target.classList.add(direction);
 
@@ -201,7 +209,7 @@ import { isMobile } from "./isMobile.js";
 
       const targetId = target.href.split("#")[1];
 
-      const targetElement = [...$sectionList].find(
+      const targetElement = $sectionList.find(
         (element) => element.id === targetId
       );
 
@@ -251,6 +259,7 @@ import { isMobile } from "./isMobile.js";
       const currentActiveIndex = getCurrentActiveIndex($sectionList);
       if (currentActiveIndex < 0) return;
       if (currentActiveIndex === $sectionList.length - 1 && diffY < 0) return;
+      if (currentActiveIndex === 0 && diffY > 0) return;
       $sectionList[
         currentActiveIndex
       ].style.transform = `translateY(${diffY}px)`;
@@ -297,7 +306,7 @@ import { isMobile } from "./isMobile.js";
     document.addEventListener("click", (e) => {
       if ($hamburger.contains(e.target)) {
         openDrawer();
-      } else if (!$drawer.contains(e.target)) {
+      } else if (!$drawerNavigator.contains(e.target)) {
         closeDrawer();
       }
       navigatorClickHandler(e);

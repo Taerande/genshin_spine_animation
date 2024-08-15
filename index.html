@@ -26,7 +26,7 @@
   </head>
   <body>
     <header class="msg__header">
-      <div class="msg__hamburger">
+      <div class="msg__hamburger" id="msg-navigator__toggle">
         <span class="material-symbols-outlined"> menu </span>
       </div>
       <div class="msg__header--actions">
@@ -39,7 +39,7 @@
         </div>
       </div>
     </header>
-    <nav class="msg__navigator">
+    <aside class="msg__navigator" id="msg-aside__container">
       <ul>
         <li class="menu__item--01">
           <a href="#main__item--01" data-msg-navigator></a>
@@ -65,10 +65,10 @@
         <li class="menu__item--07">
           <a href="#main__item--07" data-msg-navigator></a>
         </li>
-        <span class="msg__indicator"></span>
+        <span id="msg-aside__indicator"></span>
       </ul>
-    </nav>
-    <nav class="msg__navigator--drawer">
+    </aside>
+    <nav class="msg__navigator--drawer" id="msg-navigator__container">
       <div class="title">
         <a href="#main__item--01" data-msg-navigator>WIND</a>
       </div>
@@ -109,194 +109,205 @@
         <a href="https://naver.com">공식 홈페이지</a>
       </div>
     </nav>
-    <div class="overlay"></div>
+
     <main class="msg__wrapper">
-      <section class="main__item msg__section" id="main__item--01">
-        <div class="cover__vid">
-          <video loop muted autoplay>
-            <source
-              src="https://vod.plaync.com/lineage/update/240620/title_bg.mp4#t=0.1"
-              type="video/mp4"
-            />
-          </video>
-        </div>
-        <div class="container">
-          <div class="subtitle"></div>
-        </div>
-      </section>
-      <section class="main__item msg__section" id="main__item--02">
-        <div class="container">
-          <div class="title"></div>
-          <div class="subtitle"></div>
-          <div class="content__tab">
-            <ul>
-              <li
-                data-msg-tab="section__02--01"
-                class="tab tab__item--01 active"
-              ></li>
-              <li data-msg-tab="section__02--02" class="tab tab__item--02"></li>
-              <li data-msg-tab="section__02--03" class="tab tab__item--03"></li>
-            </ul>
+      <div id="msg-fullpage__container">
+        <section class="main__item msg-fullpage__section" id="main__item--01">
+          <div class="cover__vid">
+            <video loop muted autoplay>
+              <source
+                src="https://vod.plaync.com/lineage/update/240620/title_bg.mp4#t=0.1"
+                type="video/mp4"
+              />
+            </video>
           </div>
-          <div class="content">
-            <ul>
-              <li class="main__item--01 active" data-msg-tab="section__02--01">
-                <div class="main__title"></div>
-                <ul class="sub__list">
-                  <li class="sub__item--01">
-                    <div class="sub__content"></div>
-                    <div class="sub__caption"></div>
-                  </li>
-                  <li class="sub__item--02">
-                    <div class="sub__content"></div>
-                    <div class="sub__caption"></div>
-                  </li>
-                  <li class="sub__item--03">
-                    <div class="sub__content"></div>
-                    <div class="sub__caption"></div>
-                  </li>
-                </ul>
-              </li>
-              <li class="main__item--02" data-msg-tab="section__02--02">
-                <div class="main__title"></div>
-                <ul class="sub__list">
-                  <li class="sub__item--01">
-                    <div class="sub__content"></div>
-                    <div class="sub__caption"></div>
-                  </li>
-                  <li class="sub__item--02">
-                    <div class="sub__content"></div>
-                    <div class="sub__caption"></div>
-                  </li>
-                  <li class="sub__item--03">
-                    <div class="sub__content"></div>
-                    <div class="sub__caption"></div>
-                  </li>
-                </ul>
-              </li>
-              <li class="main__item--03" data-msg-tab="section__02--03">
-                <div class="main__title"></div>
-                <ul class="sub__list">
-                  <li class="sub__item--01">
-                    <div class="sub__content"></div>
-                    <div class="sub__caption"></div>
-                  </li>
-                  <li class="sub__item--02">
-                    <div class="sub__content"></div>
-                    <div class="sub__caption"></div>
-                  </li>
-                  <li class="sub__item--03">
-                    <div class="sub__content"></div>
-                    <div class="sub__caption"></div>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+          <div class="container">
+            <div class="subtitle"></div>
           </div>
-        </div>
-      </section>
-      <section class="main__item msg__section" id="main__item--03">
-        <div class="container">
-          <div class="title"></div>
-          <div class="subtitle"></div>
-          <div class="content">
-            <li class="content__item content__item--01">
-              <div class="item__bg--effect"></div>
-              <div class="item__title"></div>
-              <div class="item__caption"></div>
-            </li>
-            <li class="content__item content__item--02">
-              <div class="item__bg--effect"></div>
-              <div class="item__title"></div>
-              <div class="item__caption"></div>
-            </li>
-            <li class="content__item content__item--03">
-              <div class="item__bg--effect"></div>
-              <div class="item__title"></div>
-              <div class="item__caption"></div>
-            </li>
+        </section>
+        <section class="main__item msg-fullpage__section" id="main__item--02">
+          <div class="container">
+            <div class="title"></div>
+            <div class="subtitle"></div>
+            <div class="content__tab">
+              <ul>
+                <li
+                  data-msg-tab="section__02--01"
+                  class="tab tab__item--01 active"
+                ></li>
+                <li
+                  data-msg-tab="section__02--02"
+                  class="tab tab__item--02"
+                ></li>
+                <li
+                  data-msg-tab="section__02--03"
+                  class="tab tab__item--03"
+                ></li>
+              </ul>
+            </div>
+            <div class="content">
+              <ul>
+                <li
+                  class="main__item--01 active"
+                  data-msg-tab="section__02--01"
+                >
+                  <div class="main__title"></div>
+                  <ul class="sub__list">
+                    <li class="sub__item--01">
+                      <div class="sub__content"></div>
+                      <div class="sub__caption"></div>
+                    </li>
+                    <li class="sub__item--02">
+                      <div class="sub__content"></div>
+                      <div class="sub__caption"></div>
+                    </li>
+                    <li class="sub__item--03">
+                      <div class="sub__content"></div>
+                      <div class="sub__caption"></div>
+                    </li>
+                  </ul>
+                </li>
+                <li class="main__item--02" data-msg-tab="section__02--02">
+                  <div class="main__title"></div>
+                  <ul class="sub__list">
+                    <li class="sub__item--01">
+                      <div class="sub__content"></div>
+                      <div class="sub__caption"></div>
+                    </li>
+                    <li class="sub__item--02">
+                      <div class="sub__content"></div>
+                      <div class="sub__caption"></div>
+                    </li>
+                    <li class="sub__item--03">
+                      <div class="sub__content"></div>
+                      <div class="sub__caption"></div>
+                    </li>
+                  </ul>
+                </li>
+                <li class="main__item--03" data-msg-tab="section__02--03">
+                  <div class="main__title"></div>
+                  <ul class="sub__list">
+                    <li class="sub__item--01">
+                      <div class="sub__content"></div>
+                      <div class="sub__caption"></div>
+                    </li>
+                    <li class="sub__item--02">
+                      <div class="sub__content"></div>
+                      <div class="sub__caption"></div>
+                    </li>
+                    <li class="sub__item--03">
+                      <div class="sub__content"></div>
+                      <div class="sub__caption"></div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </section>
-      <section class="main__item msg__section" id="main__item--04">
-        <div class="container">
-          <div class="title"></div>
-          <div class="subtitle"></div>
-          <div class="main__content"></div>
-          <div class="character"></div>
-          <a href="" class="cta"></a>
-        </div>
-      </section>
-      <section class="main__item msg__section" id="main__item--05">
-        <div class="container">
-          <div class="title"></div>
-          <div class="subtitle"></div>
-          <div class="content">
-            <li class="content__item content__item--01">
-              <div class="item__bg"></div>
-              <div class="item__title"></div>
-              <div class="item__content"></div>
-              <div class="item__caption"></div>
-            </li>
-            <li class="content__item content__item--02">
-              <div class="item__bg"></div>
-              <div class="item__title"></div>
-              <div class="item__content"></div>
-              <div class="item__caption"></div>
-            </li>
-            <li class="content__item content__item--03">
-              <div class="item__bg"></div>
-              <div class="item__title"></div>
-              <div class="item__content"></div>
-              <div class="item__caption"></div>
-            </li>
-          </div>
-          <div class="cta"></div>
-        </div>
-      </section>
-      <section class="main__item msg__section" id="main__item--06">
-        <div class="container">
-          <div class="title"></div>
-          <div class="subtitle"></div>
-          <div class="content">
-            <ul>
+        </section>
+        <section class="main__item msg-fullpage__section" id="main__item--03">
+          <div class="container">
+            <div class="title"></div>
+            <div class="subtitle"></div>
+            <div class="content">
               <li class="content__item content__item--01">
+                <div class="item__bg--effect"></div>
+                <div class="item__title"></div>
+                <div class="item__caption"></div>
+              </li>
+              <li class="content__item content__item--02">
+                <div class="item__bg--effect"></div>
+                <div class="item__title"></div>
+                <div class="item__caption"></div>
+              </li>
+              <li class="content__item content__item--03">
+                <div class="item__bg--effect"></div>
+                <div class="item__title"></div>
+                <div class="item__caption"></div>
+              </li>
+            </div>
+          </div>
+        </section>
+        <section class="main__item msg-fullpage__section" id="main__item--04">
+          <div class="container">
+            <div class="title"></div>
+            <div class="subtitle"></div>
+            <div class="main__content"></div>
+            <div class="character"></div>
+            <a href="" class="cta"></a>
+          </div>
+        </section>
+        <section class="main__item msg-fullpage__section" id="main__item--05">
+          <div class="container">
+            <div class="title"></div>
+            <div class="subtitle"></div>
+            <div class="content">
+              <li class="content__item content__item--01">
+                <div class="item__bg"></div>
+                <div class="item__title"></div>
                 <div class="item__content"></div>
                 <div class="item__caption"></div>
               </li>
               <li class="content__item content__item--02">
+                <div class="item__bg"></div>
+                <div class="item__title"></div>
                 <div class="item__content"></div>
                 <div class="item__caption"></div>
               </li>
               <li class="content__item content__item--03">
+                <div class="item__bg"></div>
+                <div class="item__title"></div>
                 <div class="item__content"></div>
                 <div class="item__caption"></div>
               </li>
-            </ul>
+            </div>
+            <div class="cta"></div>
           </div>
-          <div class="cta"></div>
-        </div>
-      </section>
-      <section class="main__item msg__section" id="main__item--07">
-        <div class="container">
-          <div class="title"></div>
-          <div class="subtitle"></div>
-          <div class="content">
-            <ul>
-              <li class="content__item content__item--01">
-                <div class="item__title"></div>
-                <i class="item__line"></i>
-                <div class="item__caption"></div>
-              </li>
-              <li class="content__item content__item--02">
-                <div class="item__title"></div>
-                <i class="item__line"></i>
-                <div class="item__caption"></div>
-              </li>
-            </ul>
+        </section>
+        <section class="main__item msg-fullpage__section" id="main__item--06">
+          <div class="container">
+            <div class="title"></div>
+            <div class="subtitle"></div>
+            <div class="content">
+              <ul>
+                <li class="content__item content__item--01">
+                  <div class="item__content"></div>
+                  <div class="item__caption"></div>
+                </li>
+                <li class="content__item content__item--02">
+                  <div class="item__content"></div>
+                  <div class="item__caption"></div>
+                </li>
+                <li class="content__item content__item--03">
+                  <div class="item__content"></div>
+                  <div class="item__caption"></div>
+                </li>
+              </ul>
+            </div>
+            <div class="cta"></div>
           </div>
-        </div>
-      </section>
+        </section>
+        <section class="main__item msg-fullpage__section" id="main__item--07">
+          <div class="container">
+            <div class="title"></div>
+            <div class="subtitle"></div>
+            <div class="content">
+              <ul>
+                <li class="content__item content__item--01">
+                  <div class="item__title"></div>
+                  <i class="item__line"></i>
+                  <div class="item__caption"></div>
+                </li>
+                <li class="content__item content__item--02">
+                  <div class="item__title"></div>
+                  <i class="item__line"></i>
+                  <div class="item__caption"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
     <div class="pre-load">
       <div class="ms__logo"></div>
@@ -311,12 +322,13 @@
         class="main__item active"
         
       ></section>
-      <section id="nilu" class="main__item msg__section" /section>
-      <section id="emilly" class="main__item msg__section" /section>
-      <section id="yaran" class="main__item msg__section" /section>
+      <section id="nilu" class="main__item msg-fullpage__section" /section>
+      <section id="emilly" class="main__item msg-fullpage__section" /section>
+      <section id="yaran" class="main__item msg-fullpage__section" /section>
     </div> -->
 
     <!-- <div class="x__cross"></div>
     <div class="y__cross"></div> -->
+    <!-- <div class="overlay"></div> -->
   </body>
 </html>
