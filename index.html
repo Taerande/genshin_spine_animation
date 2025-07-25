@@ -2,333 +2,65 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Genshin Impact Spine animation</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css"
-    />
-    <!-- preload -->
-    <link rel="preload" as="style" href="./style.css" />
-    <link rel="preload" as="script" href="./preload.js" />
-    <link rel="stylesheet" href="./style.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
-    <!-- <script src="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/iife/spine-player.js"></script> -->
-    <script src="./lib/gsap@3.12.5.min.js"></script>
-    <script src="./preload.js"></script>
-    <script defer type="module" src="./main.js"></script>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+    </style>
+    <script src="./lib/spine-player.js"></script>
   </head>
   <body>
-    <header class="msg__header">
-      <div class="msg__hamburger" id="msg-navigator__toggle">
-        <span class="material-symbols-outlined"> menu </span>
-      </div>
-      <div class="msg__header--actions">
-        <div class="msg__home">
-          <span class="material-symbols-outlined"> home </span>
-        </div>
-        <div class="msg__close">
-          <span class="material-symbols-outlined"> close </span>
-          <span>오늘 그만 보기</span>
-        </div>
-      </div>
-    </header>
-    <aside class="msg__navigator" id="msg-aside__container">
-      <ul>
-        <li class="menu__item--01">
-          <a href="#main__item--01" data-msg-navigator></a>
-        </li>
-        <li class="menu__item--02">
-          <a href="#main__item--02" data-msg-navigator></a>
-        </li>
-        <li class="menu__item--03">
-          <a href="#main__item--03" data-msg-navigator></a>
-        </li>
-        <li class="menu__item--09">
-          <a href="#main__item--04"></a>
-        </li>
-        <li class="menu__item--04">
-          <a href="#main__item--04" data-msg-navigator></a>
-        </li>
-        <li class="menu__item--05">
-          <a href="#main__item--05" data-msg-navigator></a>
-        </li>
-        <li class="menu__item--06">
-          <a href="#main__item--06" data-msg-navigator></a>
-        </li>
-        <li class="menu__item--07">
-          <a href="#main__item--07" data-msg-navigator></a>
-        </li>
-        <span id="msg-aside__indicator"></span>
-      </ul>
-    </aside>
-    <nav class="msg__navigator--drawer" id="msg-navigator__container">
-      <div class="title">
-        <a href="#main__item--01" data-msg-navigator>WIND</a>
-      </div>
-      <div class="content">
-        <ul class="main__list">
-          <li class="main__item">
-            <a href="#main__item--02" data-msg-navigator>신규서버 야히</a>
-          </li>
-          <li class="main__item">
-            <a href="#main__item--03" data-msg-navigator>클래스 리밸런싱</a>
-          </li>
-          <li class="main__item">
-            <a href="#main__item--04">변화의 바람</a>
-            <ul class="sub__list">
-              <li class="sub__item">
-                <a href="#main__item--04" data-msg-navigator
-                  >- 아덴 월드 거래소</a
-                >
-              </li>
-              <li class="sub__item">
-                <a href="#main__item--05" data-msg-navigator>- 혈맹 리뉴얼</a>
-              </li>
-              <li class="sub__item">
-                <a href="#main__item--06" data-msg-navigator
-                  >- 특화 서버의 변화</a
-                >
-              </li>
-              <li class="sub__item">
-                <a href="#main__item--07" data-msg-navigator>- UI/UX 리뉴얼</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="line"></div>
-      <div class="footer">
-        <span class="material-symbols-outlined"> home </span>
-        <a href="https://naver.com">공식 홈페이지</a>
-      </div>
-    </nav>
-
-    <main class="msg__wrapper">
-      <div id="msg-fullpage__container">
-        <section class="main__item msg-fullpage__section" id="main__item--01">
-          <div class="cover__vid">
-            <video loop muted autoplay>
-              <source
-                src="https://vod.plaync.com/lineage/update/240620/title_bg.mp4#t=0.1"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="container">
-            <div class="subtitle"></div>
-          </div>
-        </section>
-        <section class="main__item msg-fullpage__section" id="main__item--02">
-          <div class="container">
-            <div class="title"></div>
-            <div class="subtitle"></div>
-            <div class="content__tab">
-              <ul>
-                <li
-                  data-msg-tab="section__02--01"
-                  class="tab tab__item--01 active"
-                ></li>
-                <li
-                  data-msg-tab="section__02--02"
-                  class="tab tab__item--02"
-                ></li>
-                <li
-                  data-msg-tab="section__02--03"
-                  class="tab tab__item--03"
-                ></li>
-              </ul>
-            </div>
-            <div class="content">
-              <ul>
-                <li
-                  class="main__item--01 active"
-                  data-msg-tab="section__02--01"
-                >
-                  <div class="main__title"></div>
-                  <ul class="sub__list">
-                    <li class="sub__item--01">
-                      <div class="sub__content"></div>
-                      <div class="sub__caption"></div>
-                    </li>
-                    <li class="sub__item--02">
-                      <div class="sub__content"></div>
-                      <div class="sub__caption"></div>
-                    </li>
-                    <li class="sub__item--03">
-                      <div class="sub__content"></div>
-                      <div class="sub__caption"></div>
-                    </li>
-                  </ul>
-                </li>
-                <li class="main__item--02" data-msg-tab="section__02--02">
-                  <div class="main__title"></div>
-                  <ul class="sub__list">
-                    <li class="sub__item--01">
-                      <div class="sub__content"></div>
-                      <div class="sub__caption"></div>
-                    </li>
-                    <li class="sub__item--02">
-                      <div class="sub__content"></div>
-                      <div class="sub__caption"></div>
-                    </li>
-                    <li class="sub__item--03">
-                      <div class="sub__content"></div>
-                      <div class="sub__caption"></div>
-                    </li>
-                  </ul>
-                </li>
-                <li class="main__item--03" data-msg-tab="section__02--03">
-                  <div class="main__title"></div>
-                  <ul class="sub__list">
-                    <li class="sub__item--01">
-                      <div class="sub__content"></div>
-                      <div class="sub__caption"></div>
-                    </li>
-                    <li class="sub__item--02">
-                      <div class="sub__content"></div>
-                      <div class="sub__caption"></div>
-                    </li>
-                    <li class="sub__item--03">
-                      <div class="sub__content"></div>
-                      <div class="sub__caption"></div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <section class="main__item msg-fullpage__section" id="main__item--03">
-          <div class="container">
-            <div class="title"></div>
-            <div class="subtitle"></div>
-            <div class="content">
-              <li class="content__item content__item--01">
-                <div class="item__bg--effect"></div>
-                <div class="item__title"></div>
-                <div class="item__caption"></div>
-              </li>
-              <li class="content__item content__item--02">
-                <div class="item__bg--effect"></div>
-                <div class="item__title"></div>
-                <div class="item__caption"></div>
-              </li>
-              <li class="content__item content__item--03">
-                <div class="item__bg--effect"></div>
-                <div class="item__title"></div>
-                <div class="item__caption"></div>
-              </li>
-            </div>
-          </div>
-        </section>
-        <section class="main__item msg-fullpage__section" id="main__item--04">
-          <div class="container">
-            <div class="title"></div>
-            <div class="subtitle"></div>
-            <div class="main__content"></div>
-            <div class="character"></div>
-            <a href="" class="cta"></a>
-          </div>
-        </section>
-        <section class="main__item msg-fullpage__section" id="main__item--05">
-          <div class="container">
-            <div class="title"></div>
-            <div class="subtitle"></div>
-            <div class="content">
-              <li class="content__item content__item--01">
-                <div class="item__bg"></div>
-                <div class="item__title"></div>
-                <div class="item__content"></div>
-                <div class="item__caption"></div>
-              </li>
-              <li class="content__item content__item--02">
-                <div class="item__bg"></div>
-                <div class="item__title"></div>
-                <div class="item__content"></div>
-                <div class="item__caption"></div>
-              </li>
-              <li class="content__item content__item--03">
-                <div class="item__bg"></div>
-                <div class="item__title"></div>
-                <div class="item__content"></div>
-                <div class="item__caption"></div>
-              </li>
-            </div>
-            <div class="cta"></div>
-          </div>
-        </section>
-        <section class="main__item msg-fullpage__section" id="main__item--06">
-          <div class="container">
-            <div class="title"></div>
-            <div class="subtitle"></div>
-            <div class="content">
-              <ul>
-                <li class="content__item content__item--01">
-                  <div class="item__content"></div>
-                  <div class="item__caption"></div>
-                </li>
-                <li class="content__item content__item--02">
-                  <div class="item__content"></div>
-                  <div class="item__caption"></div>
-                </li>
-                <li class="content__item content__item--03">
-                  <div class="item__content"></div>
-                  <div class="item__caption"></div>
-                </li>
-              </ul>
-            </div>
-            <div class="cta"></div>
-          </div>
-        </section>
-        <section class="main__item msg-fullpage__section" id="main__item--07">
-          <div class="container">
-            <div class="title"></div>
-            <div class="subtitle"></div>
-            <div class="content">
-              <ul>
-                <li class="content__item content__item--01">
-                  <div class="item__title"></div>
-                  <i class="item__line"></i>
-                  <div class="item__caption"></div>
-                </li>
-                <li class="content__item content__item--02">
-                  <div class="item__title"></div>
-                  <i class="item__line"></i>
-                  <div class="item__caption"></div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-      </div>
-    </main>
-    <div class="pre-load">
-      <div class="ms__logo"></div>
-      <div class="msg__progress--bar">
-        <div class="msg__progress--indicator"></div>
-      </div>
+    <div>
+      <div id="navia" style="width: 100%"></div>
+      <div id="nilu" style="width: 100%"></div>
+      <div id="emilly" style="width: 100%"></div>
+      <div id="yaran" style="width: 100%"></div>
     </div>
-
-    <!-- <div class="wrapper">
-      <section
-        id="navia"
-        class="main__item active"
-        
-      ></section>
-      <section id="nilu" class="main__item msg-fullpage__section" /section>
-      <section id="emilly" class="main__item msg-fullpage__section" /section>
-      <section id="yaran" class="main__item msg-fullpage__section" /section>
-    </div> -->
-
-    <!-- <div class="x__cross"></div>
-    <div class="y__cross"></div> -->
-    <!-- <div class="overlay"></div> -->
+    <script>
+      new spine.SpinePlayer("navia", {
+        skeleton: "./data/navia.json",
+        atlas: "./data/navia.atlas",
+        animation: "animation",
+        premultipliedAlpha: false,
+        alpha: true,
+        loop: true,
+        autoplay: true,
+        showControls: false,
+      });
+      new spine.SpinePlayer("nilu", {
+        skeleton: "./data/nilu.json",
+        atlas: "./data/nilu.atlas",
+        animation: "aa",
+        premultipliedAlpha: false,
+        alpha: true,
+        loop: true,
+        autoplay: true,
+        showControls: false,
+      });
+      new spine.SpinePlayer("emilly", {
+        skeleton: "./data/emilly.json",
+        atlas: "./data/emilly.atlas",
+        animation: "animation",
+        premultipliedAlpha: false,
+        alpha: true,
+        loop: true,
+        autoplay: true,
+        showControls: false,
+      });
+      new spine.SpinePlayer("yaran", {
+        skeleton: "./data/yaran.json",
+        atlas: "./data/yaran.atlas",
+        animation: "animation",
+        premultipliedAlpha: false,
+        alpha: true,
+        loop: true,
+        autoplay: true,
+        showControls: false,
+      });
+    </script>
   </body>
 </html>
